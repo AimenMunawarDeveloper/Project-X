@@ -20,7 +20,7 @@ const Footer = () => {
       <div className="flex flex-col lg:flex-row justify-between gap-10 px-10 lg:px-20 py-20 w-full ">
         <div className="flex-grow text-center lg:text-left">
           <h1 className="text-3xl font-bold">
-            <span className="text-[var(--Pink)]">Craftsy</span>
+            <span className="text-[var(--Pink)]">Project X</span>
           </h1>
         </div>
 
@@ -29,24 +29,25 @@ const Footer = () => {
             Quick Links
           </h1>
           <h2
-            className="hover:translate-x-2 text-gray-600 hover:text-black transition duration-300"
+            className="hover:translate-x-2 text-[var(--Yellow)] hover:text-[var(--Brown)] transition duration-300"
             onClick={handleScrollUp}
           >
             <Link to="/">Home</Link>
           </h2>
+
           <h2
-            className="hover:translate-x-2 text-gray-600 hover:text-black transition duration-300"
+            className="hover:translate-x-2 text-[var(--Yellow)] hover:text-[var(--Brown)] transition duration-300"
             onClick={handleScrollUp}
           >
             <Link to="/About">About Us</Link>
           </h2>
           <h2
-            className="hover:translate-x-2 text-gray-600 hover:text-black transition duration-300"
+            className="hover:translate-x-2 text-[var(--Yellow)] hover:text-[var(--Brown)] transition duration-300"
             onClick={handleScrollUp}
           >
             <Link to="/Training">Training</Link>
           </h2>
-          <h2 className="hover:translate-x-2 text-gray-600 hover:text-black transition duration-300">
+          <h2 className="hover:translate-x-2 text-[var(--Yellow)] hover:text-[var(--Brown)] transition duration-300">
             <Link to="/Collection" onClick={handleScrollUp}>
               Collections
             </Link>
@@ -54,18 +55,20 @@ const Footer = () => {
         </div>
         <div className="flex flex-col gap-3 flex-grow text-center lg:text-left">
           <h1 className="text-lg font-bold underline decoration-3 decoration-[var(--Pink)] underline-offset-8">
-          <Link to="/Contact" onClick={handleScrollUp}>Contact Us </Link>
+            <Link to="/Contact" onClick={handleScrollUp}>
+              Contact Us{" "}
+            </Link>
           </h1>
           <div>
-            <h2 className="hover:translate-x-2 text-gray-600 hover:text-black transition duration-300">
+            <h2 className="hover:translate-x-2 text-[var(--Yellow)] hover:text-[var(--Brown)] transition duration-300">
               +222-899-22233
             </h2>
-            <h2 className="hover:translate-x-2 text-gray-600 hover:text-black transition duration-300">
+            <h2 className="hover:translate-x-2 text-[var(--Yellow)] hover:text-[var(--Brown)] transition duration-300">
               craftsy@gmail.com
             </h2>
           </div>
           <div className="flex gap-3 flex-grow justify-center lg:justify-start">
-            <h2 className=" text-gray-600 ">
+            <h2 className=" text-[var(--Yellow)] hover:text-[var(--Brown)] ">
               <Link
                 to="/"
                 className="hover:text-white text-xl transition duration-300"
@@ -73,7 +76,7 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faFacebook} />
               </Link>
             </h2>
-            <h2 className=" text-gray-600 ">
+            <h2 className="text-[var(--Yellow)] hover:text-[var(--Brown)] ">
               <Link
                 to="/"
                 className="hover:text-white text-xl transition duration-300"
@@ -81,7 +84,7 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faTwitter} />
               </Link>
             </h2>
-            <h2 className=" text-gray-600 ">
+            <h2 className="text-[var(--Yellow)] hover:text-[var(--Brown)]">
               <Link
                 to="/"
                 className="hover:text-white text-xl transition duration-300"
@@ -89,7 +92,7 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faInstagram} />
               </Link>
             </h2>
-            <h2 className=" text-gray-600 ">
+            <h2 className=" text-[var(--Yellow)] hover:text-[var(--Brown)]">
               <Link
                 to="/"
                 className="hover:text-white text-xl transition duration-300"
@@ -100,8 +103,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="text-center text-gray-600 ">
-        <h4>Copyright 2024@craftsy.com-All Rights Reserved</h4>
+      <div className="text-center text-[var(--Yellow)]">
+        <h4>Copyright 2025@projectX.com-All Rights Reserved</h4>
       </div>
     </div>
   );

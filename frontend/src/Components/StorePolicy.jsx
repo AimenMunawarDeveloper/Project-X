@@ -46,11 +46,14 @@ const StorePolicy = () => {
               className="block m-3 p-2 border rounded-md shadow-md cursor-pointer hover:scale-105 transition-all text-center"
             >
               <div className="p-4">
-                <FontAwesomeIcon icon={policy.icon} />
-                <h2 className="text-lg font-semibold text-gray-700">
+                <FontAwesomeIcon
+                  icon={policy.icon}
+                  className="text-[var(--Brown)]"
+                />
+                <h2 className="text-lg font-semibold text-[var(--Brown)]">
                   {policy.heading}
                 </h2>
-                <h2 className="text-md text-gray-600 mt-2">
+                <h2 className="text-md text-[var(--Yellow)] mt-2">
                   {policy.description}
                 </h2>
               </div>

@@ -38,7 +38,7 @@ const Services = [
 
 const About = () => {
   return (
-    <div className="flex flex-col justify-center items-center w-full">
+    <div className="flex flex-col justify-center items-center w-full bg-[var(--Light)]">
       {/* About Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 w-[90%] max-w-[1200px] my-10">
         <div className="flex justify-center items-center">

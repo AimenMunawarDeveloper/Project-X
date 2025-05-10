@@ -34,7 +34,7 @@ const NewsLetter = () => {
       <h2 className="font-bold text-3xl text-[var(--Brown)] py-5 text-center">
         Stay Updated with Our Latest News
       </h2>
-      <p className="text-gray-600 text-lg pb-2 text-center">
+      <p className="text-[var(--Brown)] text-lg pb-2 text-center">
         Subscribe to our newsletter and get the latest updates, offers, and more
         directly to your inbox!
       </p>

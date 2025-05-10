@@ -64,9 +64,9 @@ const List = ({ token }) => {
                 src={item.image[0]}
                 alt={item.title}
               />
-              <div className="flex flex-col justify-between w-full h-full mt-4">
+              <div className="flex flex-col justify-between w-full h-full mt-4 text-[var(--Yellow)]">
                 <h3 className="text-lg font-semibold">{item.title}</h3>
-                <p className="text-sm text-gray-500">{item.category}</p>
+                <p className="text-sm">{item.category}</p>
                 <p className="mt-2 font-bold">{`${currency}.${item.price}`}</p>
                 <p className="mt-2 font-bold text-sm text-justify">
                   {truncateDescription(item.description, 20)}{" "}

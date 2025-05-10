@@ -19,7 +19,7 @@ const Add = ({ token }) => {
     const newErrors = {};
     if (!title.trim() || !/^[a-zA-Z0-9\s]+$/.test(title)) {
       newErrors.title =
-        "Product Name must be alphanumeric and cannot be empty.";
+        "Project Name must be alphanumeric and cannot be empty.";
     }
     if (!description.trim() || description.length < 10) {
       newErrors.description =
@@ -38,7 +38,7 @@ const Add = ({ token }) => {
       newErrors.sizes = "Select at least one size.";
     }
     if (!image) {
-      newErrors.image = "Product image is required.";
+      newErrors.image = "Project image is required.";
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -50,7 +50,7 @@ const Add = ({ token }) => {
       return;
     }
 
-    const loadingToast = toast.loading("Adding product...");
+    const loadingToast = toast.loading("Uploading project...");
 
     try {
       const formData = new FormData();
@@ -72,7 +72,7 @@ const Add = ({ token }) => {
 
       if (response.data.success) {
         toast.update(loadingToast, {
-          render: "Product added successfully!",
+          render: "Project uploaded successfully!",
           type: "success",
           isLoading: false,
           autoClose: 3000,
@@ -107,7 +107,7 @@ const Add = ({ token }) => {
   return (
     <div className="container mx-auto p-6 bg-white rounded-lg shadow-xl shadow-brown max-w-screen-lg">
       <h2 className="text-3xl font-semibold text-center text-brown mb-6">
-        Add New Product
+        Upload a New Project
       </h2>
 
       <form
@@ -116,7 +116,7 @@ const Add = ({ token }) => {
       >
         <div className="col-span-1">
           <p className="text-xl font-semibold text-darkbrown mb-4">
-            Upload Product Image
+            Upload Project Image
           </p>
           <label
             htmlFor="image"
@@ -150,7 +150,7 @@ const Add = ({ token }) => {
 
         <div className="col-span-1 sm:col-span-2">
           <p className="text-sm font-medium text-darkbrown mb-2">
-            Product Name
+            Project Name
           </p>
           <input
             onChange={(e) => setTitle(e.target.value)}
@@ -276,7 +276,7 @@ const Add = ({ token }) => {
           type="submit"
           className="col-span-1 sm:col-span-2 py-3 mt-6 bg-brown rounded-lg text-white font-semibold"
         >
-          Add Product
+          Upload Project
         </button>
       </form>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import picture1 from "../assets/sc/17.png";
-import picture2 from "../assets/sc/18.png";
-import picture3 from "../assets/sc/19.png";
+import picture1 from "../assets/coding.jpg";
+import picture2 from "../assets/team.jpg";
+import picture3 from "../assets/electrical.jpg";
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

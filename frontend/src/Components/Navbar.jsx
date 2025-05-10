@@ -33,7 +33,7 @@ const Navbar = () => {
       <div className="flex flex-wrap justify-center md:justify-between items-baseline py-5 px-5">
         <NavLink to="/">
           <h1 className="text-3xl font-bold text-black">
-            <span className="text-[var(--Pink)]">Craftsy</span>
+            <span className="text-[var(--Pink)]">Project X</span>
           </h1>
         </NavLink>
 
@@ -97,8 +97,8 @@ const Navbar = () => {
                 type="button"
                 className="text-lg cursor-pointer pb-1.5 transition-all px-2 hover:font-bold font-serif"
               >
-                <i className="fa-solid fa-cart-shopping relative">
-                  <p className="absolute right-[-7px] bottom-[-5px] bg-black text-white text-[8px] rounded-full p-1">
+                <i className="fa-solid fa-cart-shopping relative text-[var(--Yellow)]">
+                  <p className="absolute right-[-7px] bottom-[-5px] bg-[var(--Light)] text-white text-[8px] rounded-full p-1">
                     {numberOfItemsInCart || 0}
                   </p>
                 </i>
@@ -208,7 +208,7 @@ const Navbar = () => {
                 onClick={toggleProfile}
                 className="text-lg cursor-pointer pb-1.5 transition-all px-2 hover:font-bold"
               >
-                <i className="fas fa-user"></i>
+                <i className="fas fa-user text-[var(--Yellow)]"></i>
               </button>
 
               {downProfile && (
@@ -220,7 +220,7 @@ const Navbar = () => {
                     {!token && (
                       <li
                         onClick={() => (token ? null : navigate("/Login"))}
-                        className="block  px-2 text-[var(--Brown)] py-2 hover:text-yellow-800"
+                        className="block px-2 text-[var(--Yellow)] py-2 hover:text-yellow-600"
                       >
                         My Profile
                       </li>
@@ -230,13 +230,13 @@ const Navbar = () => {
                       <>
                         <li
                           onClick={() => navigate("/Order")}
-                          className="block px-2 text-[var(--Brown)] py-2 hover:text-yellow-800"
+                          className="block px-2 text-[var(--Yellow)] py-2 hover:text-yellow-600"
                         >
                           My Orders
                         </li>
                         <li
                           onClick={logout}
-                          className="block px-2 text-[var(--Brown)] py-2 hover:text-yellow-800"
+                          className="block px-2 text-[var(--Yellow)] py-2 hover:text-yellow-600"
                         >
                           Log Out
                         </li>

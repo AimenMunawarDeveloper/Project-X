@@ -21,10 +21,9 @@ textarea {
 }
 
 :root {
-  --Light: #fef2f2;
-  --LightBrown: #e4c2c1;
-  --Brown: #b6666f;
-  --Pink: #f53163;
-  --Yellow: #d1a080;
-  --DarkBrown: #a24e58;
+  --Light: #567257; /*for background*/
+  --Pink: #d9d8d5; /*for text*/
+  --LightBrown: #896a58;
+  --Brown: #2a2420;
+  --Yellow: #acab9e;
 }

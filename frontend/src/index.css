@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-  --Light:#FEF2F2;
-  --LightBrown:#E4C2C1;
-  --Brown:#B6666F;
-  --Pink:#F53163;
-  --Yellow:#D1A080;
+:root {
+  --Light: #567257; /*for background*/
+  --Pink: #d9d8d5; /*for text*/
+  --LightBrown: #896a58;
+  --Brown: #2a2420;
+  --Yellow: #acab9e;
 }
