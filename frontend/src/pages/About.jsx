@@ -38,7 +38,7 @@ const Services = [
 
 const About = () => {
   return (
-    <div className="flex flex-col justify-center items-center w-full bg-[var(--Light)]">
+    <div className="flex flex-col justify-center items-center w-full bg-[var(--Background)]">
       {/* About Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 w-[90%] max-w-[1200px] my-10">
         <div className="flex justify-center items-center">
@@ -74,7 +74,10 @@ const About = () => {
       </div>
 
       {/* Services Section */}
-      <div className="bg-[var(--Light)] w-full" data-testid="services-section">
+      <div
+        className="bg-[var(--Background)] w-full"
+        data-testid="services-section"
+      >
         <h1 className="font-bold text-3xl text-center text-[var(--Brown)] py-10">
           Why Choose Craftsy?
         </h1>

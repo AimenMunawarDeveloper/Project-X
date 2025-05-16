@@ -3,9 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --Light: #567257; /*for background*/
-  --Pink: #d9d8d5; /*for text*/
-  --LightBrown: #896a58;
-  --Brown: #2a2420;
-  --Yellow: #acab9e;
+  --Light: #5d8b5a; /*for background (Primary)*/
+  --Pink: #e8e2da; /*for text (Muted)*/
+  --LightBrown: #8b6e44; /*Secondary*/
+  --Brown: #2a2420; /*kept the same for contrast*/
+  --Yellow: #a1be7c; /*Accent*/
+  --Background: #f9f7f3; /* BACKGROUN */
 }

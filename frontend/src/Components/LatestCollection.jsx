@@ -16,7 +16,7 @@ const LatestCollection = () => {
   }
 
   return (
-    <div className="bg-[var(--Light)]" data-testid="latest-collection">
+    <div className="bg-[var(--Background)]" data-testid="latest-collection">
       <h1 className="font-bold text-3xl text-center text-[var(--Brown)] py-10">
         New Arrivals
       </h1>

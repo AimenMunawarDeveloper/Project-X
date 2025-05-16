@@ -4,15 +4,8 @@ import productModel from "../models/productModel.js";
 // function for add product
 const addProduct = async (req, res) => {
   try {
-    const {
-      title,
-      description,
-      price,
-      category,
-      subCategory,
-      sizes,
-      BestSell,
-    } = req.body;
+    const { title, description, price, category, subCategory, BestSell } =
+      req.body;
     const image = req.file;
     let imageUrl = "";
     if (image) {
@@ -28,7 +21,6 @@ const addProduct = async (req, res) => {
       subCategory,
       price: Number(price),
       BestSell: BestSell === "true" ? true : false,
-      sizes: JSON.parse(sizes),
       image: imageUrl,
       date: Date.now(),
     };

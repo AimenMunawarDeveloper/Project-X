@@ -74,7 +74,7 @@ const Order = () => {
             <div className="grid gap-5">
               {order.items.map((item) => (
                 <div
-                  key={`${item._id}-${item.size}`}
+                  key={item._id}
                   className="grid grid-cols-1 md:grid-cols-4 gap-5 items-center border-b pb-3 last:border-none"
                 >
                   <div className="flex gap-5 col-span-1 md:col-span-2">
@@ -90,8 +90,7 @@ const Order = () => {
                       </p>
                       <p className="text-gray-700">
                         {curr}
-                        {item.price} - Quantity: {item.quantity} - Size:{" "}
-                        {item.size}
+                        {item.price} - Quantity: {item.quantity}
                       </p>
                     </div>
                   </div>

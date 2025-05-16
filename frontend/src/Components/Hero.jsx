@@ -25,7 +25,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="flex bg-[var(--Light)] flex-col p-4">
+    <div className="flex bg-[var(--Background)] flex-col p-4">
       <div className="w-full relative">
         {/* Slider Container */}
         <div className="w-full h-[300px] sm:h-[450px] md:h-[650px] overflow-hidden">

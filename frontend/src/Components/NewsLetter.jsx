@@ -30,7 +30,7 @@ const NewsLetter = () => {
   };
 
   return (
-    <div className="bg-[var(--Light)] flex flex-col items-center py-10 px-5 w-full">
+    <div className="bg-[var(--Background)] flex flex-col items-center py-10 px-5 w-full">
       <h2 className="font-bold text-3xl text-[var(--Brown)] py-5 text-center">
         Stay Updated with Our Latest News
       </h2>

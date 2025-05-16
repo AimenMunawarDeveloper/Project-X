@@ -34,7 +34,7 @@ const Policies = [
 ];
 const StorePolicy = () => {
   return (
-    <div className="bg-[var(--Light)] pb-10">
+    <div className="bg-[var(--Background)] pb-10">
       <h1 className="font-bold text-3xl text-center text-[var(--Brown)] py-10">
         Our Policies
       </h1>

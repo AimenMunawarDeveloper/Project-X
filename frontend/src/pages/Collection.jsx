@@ -66,14 +66,14 @@ const Collection = () => {
   };
 
   return (
-    <div className="bg-[var(--Light)]">
+    <div className="bg-[var(--Background)]">
       <div className="p-4 flex flex-wrap justify-between text-base">
         <div className=" font-bold text-3xl text-[var(--Yellow)] py-4 md:py-0">
           _Our Collection_.
         </div>
         <div className=" block  md:flex ">
           <select
-            className="bg-[var(--Light)] pr-10 pl-2  mr-2 text-[var(--Yellow)] border border-gray-400 rounded-md"
+            className="bg-[var(--Background)] pr-10 pl-2  mr-2 text-[var(--Yellow)] border border-gray-400 rounded-md"
             value={Subcat}
             onChange={handleSubCategories}
           >
@@ -83,7 +83,7 @@ const Collection = () => {
             <option value={"Kids"}>KIDS</option>
           </select>
           <select
-            className="bg-[var(--Light)] pr-10 pl-2  mr-2 text-[var(--Yellow)] border border-gray-400 rounded-md"
+            className="bg-[var(--Background)] pr-10 pl-2  mr-2 text-[var(--Yellow)] border border-gray-400 rounded-md"
             value={cat}
             onChange={handleCategories}
           >
@@ -94,7 +94,7 @@ const Collection = () => {
             <option value={"Hoodies"}>HOODIES</option>
           </select>
           <select
-            className="bg-[var(--Light)] md:pr-10 md:pl-2 text-[var(--Yellow)] border border-gray-400 rounded-md"
+            className="bg-[var(--Background)] md:pr-10 md:pl-2 text-[var(--Yellow)] border border-gray-400 rounded-md"
             value={sortOption}
             onChange={handleSortChange}
           >

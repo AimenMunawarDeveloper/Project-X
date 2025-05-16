@@ -10,7 +10,6 @@ const Product = () => {
   const { products, curr, addingAnItemToTheCart } = useContext(ShopContext);
   const [isData, setIsData] = useState(null);
   const [image, setImage] = useState("");
-  const [selectedSize, setSelectedSize] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   console.log(ProductId);
 
@@ -88,29 +87,9 @@ const Product = () => {
             SubCategory: {isData.subCategory}
           </p>
 
-          <div className="mt-10">
-            <h1 className="text-2xl font-bold text-gray-500">Select Size</h1>
-            <div className="flex flex-wrap gap-3 my-6">
-              {isData.sizes.map((size, index) => {
-                return (
-                  <button
-                    key={index}
-                    className={`p-2 border rounded-md text-lg text-gray-500 hover:bg-[var(--Pink)] hover:text-white cursor-pointer hover:scale-105 transition-all ${
-                      size === selectedSize ? "border-yellow-600" : ""
-                    }`}
-                    onClick={() => setSelectedSize(size)}
-                    data-testid={`size-button-${size}`}
-                  >
-                    {size}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
           <button
             className="py-2 mt-5 mb-5 px-4 border bg-[var(--Yellow)] rounded-3xl text-lg font-bold text-white hover:bg-yellow-700 cursor-pointer hover:scale-105 transition-all"
-            onClick={() => addingAnItemToTheCart(ProductId, selectedSize)}
+            onClick={() => addingAnItemToTheCart(ProductId)}
             aria-label="Add this item to your cart"
           >
             Add to Cart

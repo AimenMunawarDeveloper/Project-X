@@ -3,20 +3,15 @@ import userModel from "../models/userModel.js";
 // add products to user cart
 const addToCart = async (req, res) => {
   try {
-    const { userId, itemId, size } = req.body;
+    const { userId, itemId } = req.body;
 
     const userData = await userModel.findById(userId);
     let cartData = await userData.cartData;
 
     if (cartData[itemId]) {
-      if (cartData[itemId][size]) {
-        cartData[itemId][size] += 1;
-      } else {
-        cartData[itemId][size] = 1;
-      }
+      cartData[itemId] += 1;
     } else {
-      cartData[itemId] = {};
-      cartData[itemId][size] = 1;
+      cartData[itemId] = 1;
     }
 
     await userModel.findByIdAndUpdate(userId, { cartData });
@@ -31,12 +26,12 @@ const addToCart = async (req, res) => {
 // update user cart
 const updateCart = async (req, res) => {
   try {
-    const { userId, itemId, size, quantity } = req.body;
+    const { userId, itemId, quantity } = req.body;
 
     const userData = await userModel.findById(userId);
     let cartData = await userData.cartData;
 
-    cartData[itemId][size] = quantity;
+    cartData[itemId] = quantity;
 
     await userModel.findByIdAndUpdate(userId, { cartData });
     res.json({ success: true, message: "Cart Updated" });
@@ -63,21 +58,13 @@ const getUserCart = async (req, res) => {
 
 const deleteProductFromCart = async (req, res) => {
   try {
-    const { userId, itemId, size } = req.body;
+    const { userId, itemId } = req.body;
 
     const userData = await userModel.findById(userId);
     let cartData = (await userData.cartData) || {};
 
     if (cartData[itemId]) {
-      if (size) {
-        delete cartData[itemId][size];
-
-        if (Object.keys(cartData[itemId]).length === 0) {
-          delete cartData[itemId];
-        }
-      } else {
-        delete cartData[itemId];
-      }
+      delete cartData[itemId];
     }
 
     Object.keys(cartData).forEach((key) => {
