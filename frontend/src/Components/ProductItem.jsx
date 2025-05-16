@@ -10,7 +10,7 @@ const ProductItem = ({ id, title, image, price }) => {
     <div>
       <Link
         to={`/Product/${id}`}
-        className="block m-3 p-2 border rounded-md shadow-md cursor-pointer hover:scale-105 transition-all"
+        className="block m-3 p-2 border rounded-md shadow-md cursor-pointer hover:scale-105 transition-all bg-[var(--Muted)]"
         data-testid={`product-${id}`}
         style={{
           height: "350px", // Ensure all cards have the same height
@@ -23,7 +23,7 @@ const ProductItem = ({ id, title, image, price }) => {
           <img
             src={image[0]}
             alt={title}
-            className="w-full h-60 object-cover object-center"
+            className="w-full h-60 object-cover object-center text-[var(--Primary)]"
             style={{
               width: "100%",
               height: "240px",
@@ -32,8 +32,10 @@ const ProductItem = ({ id, title, image, price }) => {
         </div>
 
         <div className="p-4">
-          <h2 className="text-lg font-semibold text-[var(--Pink)]">{title}</h2>
-          <p className="text-sm text-[var(--Yellow)] gmt-2">
+          <h2 className="text-lg font-semibold text-[var(--Primary)]">
+            {title}
+          </h2>
+          <p className="text-sm text-[var(--Secondary)] gmt-2">
             {curr}
             {price}
           </p>

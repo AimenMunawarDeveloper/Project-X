@@ -96,7 +96,7 @@ describe("Product Page", () => {
     act(() => {
       sizeButtonM.click();
     });
-    expect(sizeButtonM).toHaveClass("border-yellow-600");
+    expect(sizeButtonM).toHaveClass("border--600");
 
     // Add to cart using `aria-label`
     const addToCartButton = screen.getByLabelText("Add this item to your cart");

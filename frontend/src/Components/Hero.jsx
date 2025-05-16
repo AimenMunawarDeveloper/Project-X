@@ -25,7 +25,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="flex bg-[var(--Light)] flex-col p-4">
+    <div className="flex flex-col p-4">
       <div className="w-full relative">
         {/* Slider Container */}
         <div className="w-full h-[300px] sm:h-[450px] md:h-[650px] overflow-hidden">
@@ -54,13 +54,13 @@ const Hero = () => {
         {/* Navigation Buttons */}
         <button
           onClick={handlePrev}
-          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-[var(--LightBrown)] text-white p-2 rounded-full shadow-md"
+          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-[var(--Muted)] text-[var(--Primary)] p-2 rounded-full shadow-md text-lg"
         >
           &larr;
         </button>
         <button
           onClick={handleNext}
-          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-[var(--LightBrown)] text-white p-2 rounded-full shadow-md"
+          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-[var(--Muted)] text-[var(--Primary)]  p-2 rounded-full shadow-md text-lg"
         >
           &rarr;
         </button>

@@ -90,11 +90,11 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full min-h-screen p-10">
+    <div className="flex flex-col items-center justify-center w-full min-h-screen p-10 bg-[var(--Muted)]">
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 w-full max-w-7xl">
         <div className="mb-10">
-          <h1 className="text-3xl font-bold text-black mb-10">
-            Get in <span className="text-[var(--Pink)]">touch</span>
+          <h1 className="text-3xl font-bold text-black mb-6">
+            Get in <span className="text-[var(--Primary)]">touch</span>
           </h1>
           <form
             onSubmit={handleSubmit}
@@ -128,6 +128,19 @@ const Contact = () => {
                   id={name}
                   value={formValues[name]}
                   onChange={handleInputChange}
+                  placeholder={
+                    {
+                      fname: "e.g., Sarah",
+                      lname: "e.g., Ali",
+                      email: "e.g., sarah.ali@example.com",
+                      street: "e.g., 123 Green Street",
+                      city: "e.g., Islamabad",
+                      state: "e.g., Punjab",
+                      zipcode: "e.g., 44000",
+                      country: "e.g., Pakistan",
+                      phone: "e.g., 03123456789",
+                    }[name]
+                  }
                   className={`h-10 rounded-md p-4 border-b-2 ${
                     errors[name] ? "border-[var(--Pink)]" : ""
                   }`}
@@ -141,7 +154,7 @@ const Contact = () => {
             ))}
             <button
               type="submit"
-              className="lg:col-span-2 bg-[var(--Pink)] text-white font-bold py-2 px-4 rounded-md"
+              className="lg:col-span-2 text-white bg-[var(--Primary)] font-bold py-2 px-4 rounded-md"
             >
               Submit
             </button>

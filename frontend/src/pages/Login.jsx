@@ -57,7 +57,7 @@ const Login = () => {
       className="flex justify-center 
     items-center md:my-20 my-10 "
     >
-      <div className="bg-[var(--LightBrown)] rounded-md p-5 w-[90%] sm:w-[80%] md:w-[60%] lg:w-[40%] xl:w-[30%] min-w-[18rem]">
+      <div className="bg-[var(--Background)] rounded-md p-5 w-[90%] sm:w-[80%] md:w-[60%] lg:w-[40%] xl:w-[30%] min-w-[18rem]">
         <h1 className="text-2xl font-semibold text-center">
           {loggedInOrSignIn}
         </h1>
@@ -106,12 +106,15 @@ const Login = () => {
               id="password"
               className="h-10 rounded-md p-4 border border-gray-300"
               required
+              placeholder="e.g. yourStrongPassword123"
             />
           </div>
-          <div className="mt-5 flex justify-between text-sm">
-            <p className="cursor-pointer">Forgot Password?</p>
+          <div className="mt-5 flex justify-between text-md">
+            <p className="cursor-pointer underline underline-offset-2 hover:text-[var(--Primary)] transition-all">
+              Forgot Password?
+            </p>
             <p
-              className="cursor-pointer"
+              className="cursor-pointer underline underline-offset-2 hover:text-[var(--Primary)] transition-all"
               onClick={() =>
                 setloggedInOrSignIn(
                   loggedInOrSignIn === "Sign up" ? "Login" : "Sign up"
@@ -122,7 +125,7 @@ const Login = () => {
             </p>
           </div>
           <button
-            className="bg-white p-3 rounded-md max-w-30 justify-self-center"
+            className="bg-[var(--Primary)] text-[var(--Background)] p-3 rounded-md max-w-30 justify-self-center"
             type="submit"
           >
             {" "}

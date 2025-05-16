@@ -29,11 +29,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-[var(--Light)]">
+    <div className="bg-[var(--Primary)] text-[var(--Muted)]">
       <div className="flex flex-wrap justify-center md:justify-between items-baseline py-5 px-5">
         <NavLink to="/">
           <h1 className="text-3xl font-bold text-black">
-            <span className="text-[var(--Pink)]">Project X</span>
+            <span className="text-[var(--Muted)]">Project X</span>
           </h1>
         </NavLink>
 
@@ -51,8 +51,8 @@ const Navbar = () => {
           <NavLink
             to="/Collection"
             className={({ isActive }) =>
-              `text-lg cursor-pointer pb-1.5 transition-all hover:font-bold text-[var(--Pink)] ${
-                isActive ? "border-b-2 border-[var(--Pink)]" : ""
+              `text-lg cursor-pointer pb-1.5 transition-all hover:font-bold text-[var(--Muted)] ${
+                isActive ? "border-b-2 border-[var(--Background)]" : ""
               }`
             }
           >
@@ -61,8 +61,8 @@ const Navbar = () => {
           <NavLink
             to="/About"
             className={({ isActive }) =>
-              `text-lg cursor-pointer pb-1.5 transition-all hover:font-bold text-[var(--Pink)] ${
-                isActive ? "border-b-2 border-[var(--Pink)]" : ""
+              `text-lg cursor-pointer pb-1.5 transition-all hover:font-bold text-[var(--Muted)] ${
+                isActive ? "border-b-2 border-[var(--Background)]" : ""
               }`
             }
           >
@@ -71,8 +71,8 @@ const Navbar = () => {
           <NavLink
             to="/Training"
             className={({ isActive }) =>
-              `text-lg cursor-pointer pb-1.5 transition-all hover:font-bold text-[var(--Pink)] ${
-                isActive ? "border-b-2 border-[var(--Pink)]" : ""
+              `text-lg cursor-pointer pb-1.5 transition-all hover:font-bold text-[var(--Muted)] ${
+                isActive ? "border-b-2 border-[var(--Background)]" : ""
               }`
             }
           >
@@ -81,8 +81,8 @@ const Navbar = () => {
           <NavLink
             to="/Contact"
             className={({ isActive }) =>
-              `text-lg cursor-pointer pb-1.5 transition-all hover:font-bold text-[var(--Pink)] ${
-                isActive ? "border-b-2 border-[var(--Pink)]" : ""
+              `text-lg cursor-pointer pb-1.5 transition-all hover:font-bold text-[var(--Muted)] ${
+                isActive ? "border-b-2 border-[var(--Background)]" : ""
               }`
             }
           >
@@ -97,8 +97,8 @@ const Navbar = () => {
                 type="button"
                 className="text-lg cursor-pointer pb-1.5 transition-all px-2 hover:font-bold font-serif"
               >
-                <i className="fa-solid fa-cart-shopping relative text-[var(--Yellow)]">
-                  <p className="absolute right-[-7px] bottom-[-5px] bg-[var(--Light)] text-white text-[8px] rounded-full p-1">
+                <i className="fa-solid fa-cart-shopping relative text-[var(--Muted)]">
+                  <p className="absolute right-[-7px] bottom-[-5px] bg-[var(--Secondary)] text-white text-[8px] rounded-full p-1">
                     {numberOfItemsInCart || 0}
                   </p>
                 </i>
@@ -106,13 +106,13 @@ const Navbar = () => {
             </NavLink>
           </div>
 
-          <div className="lg:hidden">
+          <div className="lg:hidden text-[var(--Muted)]">
             <button
               onClick={toggleProfile}
               type="button"
-              className="text-lg cursor-pointer pb-1.5 transition-all px-2 hover:font-bold"
+              className="text-lg cursor-pointer pb-1.5 transition-all px-2 hover:font-bold text-[var(--Muted)]"
             >
-              <i className="fas fa-user"></i>
+              <i className="fas fa-user text-[var(--Muted)]"></i>
             </button>
           </div>
 
@@ -128,36 +128,36 @@ const Navbar = () => {
             {dropdownOpen && (
               <div
                 id="dropdown"
-                className="fixed z-20 divide-y divide-gray-100 rounded-md shadow bg-[var(--Light)]"
+                className="fixed z-20 divide-y divide-gray-100 rounded-md shadow bg-[var()]"
               >
                 <ul className="py-2 text-sm">
                   <NavLink
                     to="/"
-                    className="block px-2 text-[var(--Brown)] py-2 hover:text-yellow-800"
+                    className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
                   >
                     <li>Home</li>
                   </NavLink>
                   <NavLink
                     to="/Collection"
-                    className="block px-2 text-[var(--Brown)] py-2 hover:text-yellow-800"
+                    className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
                   >
                     <li>Collection</li>
                   </NavLink>
                   <NavLink
                     to="/About"
-                    className="block px-2 text-[var(--Brown)] py-2 hover:text-yellow-800"
+                    className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
                   >
                     <li>About</li>
                   </NavLink>
                   <NavLink
                     to="/Training"
-                    className="block px-2 text-[var(--Brown)] py-2 hover:text-yellow-800"
+                    className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
                   >
                     <li>Trainers</li>
                   </NavLink>
                   <NavLink
                     to="/Contact"
-                    className="block px-2 text-[var(--Brown)] py-2 hover:text-yellow-800"
+                    className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
                   >
                     <li>Contact</li>
                   </NavLink>
@@ -169,13 +169,13 @@ const Navbar = () => {
             {downProfile && (
               <div
                 id="drop"
-                className="fixed z-20 divide-y divide-gray-100 rounded-md shadow bg-[var(--Light)]"
+                className="fixed z-20 divide-y divide-gray-100 rounded-md shadow bg-[var()]"
               >
                 <ul className="py-2 text-sm">
                   {!token && (
                     <li
                       onClick={() => (token ? null : navigate("/Login"))}
-                      className="block px-2 text-[var(--Brown)] py-2 hover:text-yellow-800"
+                      className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
                     >
                       My Profile
                     </li>
@@ -184,13 +184,13 @@ const Navbar = () => {
                     <>
                       <li
                         onClick={() => navigate("/Order")}
-                        className="block px-2 text-[var(--Brown)] py-2 hover:text-yellow-800"
+                        className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
                       >
                         My Orders
                       </li>
                       <li
                         onClick={logout}
-                        className="block px-2 text-[var(--Brown)] py-2 hover:text-yellow-800"
+                        className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
                       >
                         Log Out
                       </li>
@@ -208,19 +208,19 @@ const Navbar = () => {
                 onClick={toggleProfile}
                 className="text-lg cursor-pointer pb-1.5 transition-all px-2 hover:font-bold"
               >
-                <i className="fas fa-user text-[var(--Yellow)]"></i>
+                <i className="fas fa-user text-[var(--Muted)]"></i>
               </button>
 
               {downProfile && (
                 <div
                   id="drop"
-                  className="absolute top-full right-0 z-20 divide-y divide-gray-100 rounded-md shadow bg-[var(--Light)]"
+                  className="absolute top-full right-0 z-20 divide-y divide-gray-100 rounded-md shadow bg-[var(--Muted)] hover:bg-[var(--Primary)]"
                 >
                   <ul className="py-2 text-sm">
                     {!token && (
                       <li
                         onClick={() => (token ? null : navigate("/Login"))}
-                        className="block px-2 text-[var(--Yellow)] py-2 hover:text-yellow-600"
+                        className="block px-2 text-[var(--Primary)] hover:text-[var(--Muted)] py-2 cursor-pointer"
                       >
                         My Profile
                       </li>
@@ -230,13 +230,13 @@ const Navbar = () => {
                       <>
                         <li
                           onClick={() => navigate("/Order")}
-                          className="block px-2 text-[var(--Yellow)] py-2 hover:text-yellow-600"
+                          className="block cursor-pointer px-2 text-[var(--Primary)] hover:text-[var(--Muted)] py-2 "
                         >
                           My Orders
                         </li>
                         <li
                           onClick={logout}
-                          className="block px-2 text-[var(--Yellow)] py-2 hover:text-yellow-600"
+                          className="block cursor-pointer px-2 text-[var(--Primary)] hover:text-[var(--Muted)] py-2 "
                         >
                           Log Out
                         </li>

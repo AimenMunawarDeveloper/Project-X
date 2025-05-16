@@ -66,73 +66,75 @@ const Collection = () => {
   };
 
   return (
-    <div className="bg-[var(--Light)]">
-      <div className="p-4 flex flex-wrap justify-between text-base">
-        <div className=" font-bold text-3xl text-[var(--Yellow)] py-4 md:py-0">
-          _Our Collection_.
+    <div className="bg-[var(--Background)]">
+      <div className="p-7">
+        <div className="flex flex-wrap justify-between text-base">
+          <div className=" font-bold text-3xl text-[var(--Primary)] md:py-0">
+            _Our Collection_.
+          </div>
+          <div className=" block  md:flex ">
+            <select
+              className="bg-[var(--Background)] pr-10 pl-2  mr-2 text-[var(--Secondary)] border border-[var(--Secondary)] rounded-md"
+              value={Subcat}
+              onChange={handleSubCategories}
+            >
+              <option value={"Default"}>DEFAULT</option>
+              <option value={"Women"}>WOMEN</option>
+              <option value={"Men"}>MEN</option>
+              <option value={"Kids"}>KIDS</option>
+            </select>
+            <select
+              className="bg-[var(--Background)] pr-10 pl-2  mr-2 text-[var(--Secondary)] border border-gray-400 rounded-md"
+              value={cat}
+              onChange={handleCategories}
+            >
+              <option value={"Default"}>DEFAULT</option>
+              <option value={"Bottoms"}>BOTTOMS</option>
+              <option value={"Tops"}>TOPS</option>
+              <option value={"Shirts"}>SHIRTS</option>
+              <option value={"Hoodies"}>HOODIES</option>
+            </select>
+            <select
+              className="bg-[var(--Background)] md:pr-10 md:pl-2 text-[var(--Secondary)]  border border-[var(--Secondary)] rounded-md"
+              value={sortOption}
+              onChange={handleSortChange}
+            >
+              <option value={"Default"}>DEFAULT</option>
+              <option value={"LowToHigh"}>LOW TO HIGH</option>
+              <option value={"HighToLow"}>HIGH TO LOW</option>
+            </select>
+          </div>
         </div>
-        <div className=" block  md:flex ">
-          <select
-            className="bg-[var(--Light)] pr-10 pl-2  mr-2 text-[var(--Yellow)] border border-gray-400 rounded-md"
-            value={Subcat}
-            onChange={handleSubCategories}
-          >
-            <option value={"Default"}>DEFAULT</option>
-            <option value={"Women"}>WOMEN</option>
-            <option value={"Men"}>MEN</option>
-            <option value={"Kids"}>KIDS</option>
-          </select>
-          <select
-            className="bg-[var(--Light)] pr-10 pl-2  mr-2 text-[var(--Yellow)] border border-gray-400 rounded-md"
-            value={cat}
-            onChange={handleCategories}
-          >
-            <option value={"Default"}>DEFAULT</option>
-            <option value={"Bottoms"}>BOTTOMS</option>
-            <option value={"Tops"}>TOPS</option>
-            <option value={"Shirts"}>SHIRTS</option>
-            <option value={"Hoodies"}>HOODIES</option>
-          </select>
-          <select
-            className="bg-[var(--Light)] md:pr-10 md:pl-2 text-[var(--Yellow)] border border-gray-400 rounded-md"
-            value={sortOption}
-            onChange={handleSortChange}
-          >
-            <option value={"Default"}>DEFAULT</option>
-            <option value={"LowToHigh"}>LOW TO HIGH</option>
-            <option value={"HighToLow"}>HIGH TO LOW</option>
-          </select>
-        </div>
-      </div>
-      <div className="flex justify-center">
-        <div className="relative w-3/4 m-3">
-          <input
-            type="text"
-            className="w-full rounded-2xl py-1 px-3 border border-[var(--LightBrown)] text-md text-[var(--Brown)]"
-            placeholder="Search..."
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
-          <i className="fa-solid fa-magnifying-glass absolute right-3 top-1/2 transform -translate-y-1/2 text-[var(--Brown)]"></i>
-        </div>
-      </div>
-      <div
-        className="grid grid-cols md:grid-cols-2 lg:grid-cols-4"
-        data-testid="product-collection"
-      >
-        {ourCollection.map((item, index) => {
-          return (
-            <ProductItem
-              key={index}
-              id={item._id}
-              title={item.title}
-              image={item.image}
-              price={item.price.toString()}
+        <div className="flex justify-center">
+          <div className="relative w-3/4 m-3">
+            <input
+              type="text"
+              className="w-full rounded-2xl py-2 px-3 border border-[var(--Secondary)] text-md"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={handleSearchChange}
             />
-          );
-        })}
+            <i className="fa-solid fa-magnifying-glass absolute right-3 top-1/2 transform -translate-y-1/2 text-[var(--Secondary)]"></i>
+          </div>
+        </div>
+        <div
+          className="grid grid-cols md:grid-cols-2 lg:grid-cols-4"
+          data-testid="product-collection"
+        >
+          {ourCollection.map((item, index) => {
+            return (
+              <ProductItem
+                key={index}
+                id={item._id}
+                title={item.title}
+                image={item.image}
+                price={item.price.toString()}
+              />
+            );
+          })}
+        </div>
+        <StorePolicy />
       </div>
-      <StorePolicy />
     </div>
   );
 };

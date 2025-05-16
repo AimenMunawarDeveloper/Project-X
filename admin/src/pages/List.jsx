@@ -64,7 +64,7 @@ const List = ({ token }) => {
                 src={item.image[0]}
                 alt={item.title}
               />
-              <div className="flex flex-col justify-between w-full h-full mt-4 text-[var(--Yellow)]">
+              <div className="flex flex-col justify-between w-full h-full mt-4 text-[var(--)]">
                 <h3 className="text-lg font-semibold">{item.title}</h3>
                 <p className="text-sm">{item.category}</p>
                 <p className="mt-2 font-bold">{`${currency}.${item.price}`}</p>

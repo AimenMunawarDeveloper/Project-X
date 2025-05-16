@@ -96,7 +96,7 @@ const Product = () => {
                   <button
                     key={index}
                     className={`p-2 border rounded-md text-lg text-gray-500 hover:bg-[var(--Pink)] hover:text-white cursor-pointer hover:scale-105 transition-all ${
-                      size === selectedSize ? "border-yellow-600" : ""
+                      size === selectedSize ? "border-[var(--Primary)]" : ""
                     }`}
                     onClick={() => setSelectedSize(size)}
                     data-testid={`size-button-${size}`}
@@ -109,7 +109,7 @@ const Product = () => {
           </div>
 
           <button
-            className="py-2 mt-5 mb-5 px-4 border bg-[var(--Yellow)] rounded-3xl text-lg font-bold text-white hover:bg-yellow-700 cursor-pointer hover:scale-105 transition-all"
+            className="py-2 mt-5 mb-5 px-4 border bg-[var(--)] rounded-3xl text-lg font-bold text-white hover:bg--700 cursor-pointer hover:scale-105 transition-all"
             onClick={() => addingAnItemToTheCart(ProductId, selectedSize)}
             aria-label="Add this item to your cart"
           >
@@ -134,7 +134,7 @@ const Product = () => {
       </div>
 
       <div className="p-10">
-        <p className="font-bold text-2xl text-[var(--Yellow)]">Reviews(144)</p>
+        <p className="font-bold text-2xl text-[var(--)]">Reviews(144)</p>
         <div className="text-gray-500 bg-white p-5 mt-5 rounded-md shadow-md hover:scale-[1.02] transition-all">
           <p className="text-justify text-lg">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore,
@@ -153,7 +153,7 @@ const Product = () => {
         </div>
       </div>
 
-      <h1 className="font-bold text-3xl text-center text-[var(--Yellow)] py-10">
+      <h1 className="font-bold text-3xl text-center text-[var(--)] py-10">
         You May Also Like...
       </h1>
       <div

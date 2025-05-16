@@ -34,8 +34,8 @@ const Policies = [
 ];
 const StorePolicy = () => {
   return (
-    <div className="bg-[var(--Light)] pb-10">
-      <h1 className="font-bold text-3xl text-center text-[var(--Brown)] py-10">
+    <div className="pb-10">
+      <h1 className="font-bold text-3xl text-center text-[var(--Primary)] py-10">
         Our Policies
       </h1>
       <div className="grid grid-cols md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -43,17 +43,17 @@ const StorePolicy = () => {
           return (
             <div
               key={index}
-              className="block m-3 p-2 border rounded-md shadow-md cursor-pointer hover:scale-105 transition-all text-center"
+              className="block p-2 border rounded-md shadow-md cursor-pointer hover:scale-105 transition-all text-center"
             >
               <div className="p-4">
                 <FontAwesomeIcon
                   icon={policy.icon}
-                  className="text-[var(--Brown)]"
+                  className="text-[var(--Primary)]"
                 />
-                <h2 className="text-lg font-semibold text-[var(--Brown)]">
+                <h2 className="text-lg font-semibold text-[var(--Primary)]">
                   {policy.heading}
                 </h2>
-                <h2 className="text-md text-[var(--Yellow)] mt-2">
+                <h2 className="text-md text-[var(--Secondary)] mt-2">
                   {policy.description}
                 </h2>
               </div>

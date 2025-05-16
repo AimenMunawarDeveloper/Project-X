@@ -30,11 +30,11 @@ const NewsLetter = () => {
   };
 
   return (
-    <div className="bg-[var(--Light)] flex flex-col items-center py-10 px-5 w-full">
-      <h2 className="font-bold text-3xl text-[var(--Brown)] py-5 text-center">
+    <div className="flex flex-col items-center py-10 px-5 w-full">
+      <h2 className="font-bold text-3xl text-[var(--Primary)] py-5 text-center">
         Stay Updated with Our Latest News
       </h2>
-      <p className="text-[var(--Brown)] text-lg pb-2 text-center">
+      <p className="text-[var(--Accent)] text-lg pb-2 text-center">
         Subscribe to our newsletter and get the latest updates, offers, and more
         directly to your inbox!
       </p>
@@ -44,14 +44,14 @@ const NewsLetter = () => {
       >
         <input
           type="email"
-          className="text-[var(--Brown)] p-2 m-2 border-2 w-full sm:flex-1"
+          className="text-[var(--Secondary)] border-[var(--Secondary)] p-2 m-2 rounded-md border-2 w-full sm:flex-1"
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <button
           type="submit"
-          className="bg-[var(--Brown)] rounded-md p-2 m-2 text-white sm:w-auto"
+          className="bg-[var(--Primary)] hover:bg-[var(--Accent)] rounded-md p-2 m-2 text-white sm:w-auto"
         >
           Subscribe
         </button>

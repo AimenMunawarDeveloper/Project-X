@@ -149,7 +149,7 @@ const PlaceOrder = () => {
   };
 
   return (
-    <div className="p-5 bg-[var(--Light)] grid lg:grid-cols-3 lg:gap-5 sm:grid-cols-1">
+    <div className="p-5 bg-[var(--Background)] grid lg:grid-cols-3 lg:gap-5 sm:grid-cols-1">
       <div className="lg:col-span-2 mb-10">
         <h1 className="font-bold text-2xl mb-5">Shipping Information</h1>
         <div className="border-2 border-[var(--Pink)] p-5 shadow-lg rounded-md">
@@ -200,7 +200,7 @@ const PlaceOrder = () => {
               onClick={() => setMethod("stripe")}
               className={`flex items-center gap-4 border-2 p-4 cursor-pointer rounded-lg  ${
                 method === "stripe"
-                  ? "border-[var(--Pink)] bg-[var(--Light)] shadow-md"
+                  ? "border-[var(--Pink)] bg-[var()] shadow-md"
                   : "border-gray-300 bg-white"
               }`}
               data-testid="payment-method-stripe"
@@ -224,7 +224,7 @@ const PlaceOrder = () => {
               onClick={() => setMethod("razorpay")}
               className={`flex items-center gap-4 border-2 p-4 cursor-pointer rounded-lg  ${
                 method === "razorpay"
-                  ? "border-[var(--Pink)] bg-[var(--Light)] shadow-md"
+                  ? "border-[var(--Pink)] bg-[var()] shadow-md"
                   : "border-gray-300 bg-white"
               }`}
               data-testid="payment-method-razorpay"
@@ -248,7 +248,7 @@ const PlaceOrder = () => {
               onClick={() => setMethod("cod")}
               className={`flex items-center gap-4 border-2 p-4 cursor-pointer rounded-lg  ${
                 method === "cod"
-                  ? "border-[var(--Pink)] bg-[var(--Light)] shadow-md"
+                  ? "border-[var(--Pink)] bg-[var()] shadow-md"
                   : "border-gray-300 bg-white"
               }`}
               data-testid="payment-method-cod"
@@ -270,7 +270,7 @@ const PlaceOrder = () => {
       <div className="bg-white p-10 rounded-md shadow-lg">
         <Total deliveryCharges={method === "cod" ? Delivery_charges : 0} />
         <button
-          className="bg-[var(--LightBrown)] p-2 rounded-md mt-3"
+          className="bg-[var(--Primary)] text-[var(--Background)] p-2 rounded-md mt-3"
           onClick={placeOrder}
         >
           Place Order
