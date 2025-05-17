@@ -103,13 +103,16 @@ const PlaceOrder = () => {
 
     let orderItems = [];
     for (const itemId in cart) {
-      if (cart[itemId] > 0) {
-        const product = structuredClone(
-          products.find((prod) => prod._id === itemId)
-        );
-        if (product) {
-          product.quantity = cart[itemId];
-          orderItems.push(product);
+      for (const size in cart[itemId]) {
+        if (cart[itemId][size] > 0) {
+          const product = structuredClone(
+            products.find((prod) => prod._id === itemId)
+          );
+          if (product) {
+            product.size = size;
+            product.quantity = cart[itemId][size];
+            orderItems.push(product);
+          }
         }
       }
     }
@@ -146,10 +149,10 @@ const PlaceOrder = () => {
   };
 
   return (
-    <div className="p-5 bg-[var(--Light)] grid lg:grid-cols-3 lg:gap-5 sm:grid-cols-1">
+    <div className="p-5 bg-[var(--Background)] grid lg:grid-cols-3 lg:gap-5 sm:grid-cols-1">
       <div className="lg:col-span-2 mb-10">
         <h1 className="font-bold text-2xl mb-5">Shipping Information</h1>
-        <div className="border-2 border-[var(--Pink)] p-5 shadow-lg rounded-md">
+        <div className="border-2 border-[var(--Pink)] bg-[var(--Pink)] p-5 shadow-lg rounded-md">
           <form className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {[
               { name: "fname", label: "First Name", type: "text" },

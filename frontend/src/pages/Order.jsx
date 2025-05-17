@@ -95,7 +95,7 @@ const Order = () => {
                     </div>
                   </div>
                   <div className="flex justify-center md:justify-end">
-                    <button className="px-4 py-2 bg-[var(--Brown)] text-white font-semibold rounded-md">
+                    <button className="px-4 py-2 bg-[var(--Light)] text-white font-semibold rounded-md">
                       {order.status}
                     </button>
                   </div>
