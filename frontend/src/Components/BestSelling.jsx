@@ -19,7 +19,7 @@ const BestSelling = () => {
 
   return (
     <div className="bg-[var(--Background)]" data-testid="best-selling">
-      <h1 className="font-bold text-3xl text-center text-[var(--Brown)] py-10">
+      <h1 className="font-bold text-3xl text-center text-[var(--Light)] py-10">
         Best Selling
       </h1>
       <div className="grid grid-cols md:grid-cols-2 lg:grid-cols-4">

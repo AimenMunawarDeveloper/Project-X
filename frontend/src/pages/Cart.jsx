@@ -93,7 +93,7 @@ const Cart = () => {
       <div className="bg-white p-10 rounded-md shadow-lg height-auto inline-block">
         <Total deliveryCharges={200} />
         <button
-          className="bg-[var(--LightBrown)] p-2 rounded-md mt-3"
+          className="bg-[var(--Light)] p-2 rounded-md mt-3 text-[var(--Background)]"
           onClick={() => navigate("/PlaceOrder")}
         >
           Place Orders

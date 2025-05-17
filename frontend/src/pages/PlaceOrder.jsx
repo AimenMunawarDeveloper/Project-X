@@ -101,21 +101,17 @@ const PlaceOrder = () => {
 
     const finalAmount = calculateFinalAmount();
 
-    let orderItems = [];
-    for (const itemId in cart) {
-      for (const size in cart[itemId]) {
-        if (cart[itemId][size] > 0) {
-          const product = structuredClone(
-            products.find((prod) => prod._id === itemId)
-          );
-          if (product) {
-            product.size = size;
-            product.quantity = cart[itemId][size];
-            orderItems.push(product);
-          }
-        }
+    // Convert cart items to the correct format
+    const orderItems = Object.keys(cart).map(itemId => {
+      const product = products.find(prod => prod._id === itemId);
+      if (product) {
+        return {
+          ...product,
+          quantity: cart[itemId]
+        };
       }
-    }
+      return null;
+    }).filter(Boolean);
 
     try {
       const response = await axios.post(
@@ -246,7 +242,7 @@ const PlaceOrder = () => {
             </div>
             <div
               onClick={() => setMethod("cod")}
-              className={`flex items-center gap-4 border-2 p-4 cursor-pointer rounded-lg  ${
+              className={`flex items-center gap-4 border-2 p-4 cursor-pointer rounded-lg ${
                 method === "cod"
                   ? "border-[var(--Pink)] bg-[var(--Light)] shadow-md"
                   : "border-gray-300 bg-white"

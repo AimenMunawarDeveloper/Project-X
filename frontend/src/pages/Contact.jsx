@@ -94,23 +94,23 @@ const Contact = () => {
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 w-full max-w-7xl">
         <div className="mb-10">
           <h1 className="text-3xl font-bold text-black mb-10">
-            Get in <span className="text-[var(--Pink)]">touch</span>
+            Get in <span className="text-[var(--Light)]">touch</span>
           </h1>
           <form
             onSubmit={handleSubmit}
             className="grid grid-cols-1 lg:grid-cols-2 gap-5"
           >
             {[
-              { name: "fname", label: "First Name", type: "text" },
-              { name: "lname", label: "Last Name", type: "text" },
-              { name: "email", label: "Email Address", type: "email" },
-              { name: "street", label: "Street Address", type: "text" },
-              { name: "city", label: "City", type: "text" },
-              { name: "state", label: "State", type: "text" },
-              { name: "zipcode", label: "ZipCode", type: "text" },
-              { name: "country", label: "Country", type: "text" },
-              { name: "phone", label: "Phone Number", type: "tel" },
-            ].map(({ name, label, type }) => (
+              { name: "fname", label: "First Name", type: "text", placeholder: "Muhammad" },
+              { name: "lname", label: "Last Name", type: "text", placeholder: "Ahmed" },
+              { name: "email", label: "Email Address", type: "email", placeholder: "muhammad.ahmed@gmail.com" },
+              { name: "street", label: "Street Address", type: "text", placeholder: "House 123, Street 4, F-8/1" },
+              { name: "city", label: "City", type: "text", placeholder: "Islamabad" },
+              { name: "state", label: "State", type: "text", placeholder: "Federal Territory" },
+              { name: "zipcode", label: "ZipCode", type: "text", placeholder: "44000" },
+              { name: "country", label: "Country", type: "text", placeholder: "Pakistan" },
+              { name: "phone", label: "Phone Number", type: "tel", placeholder: "03XX-XXXXXXX" },
+            ].map(({ name, label, type, placeholder }) => (
               <div
                 key={name}
                 className={`flex flex-col ${
@@ -128,6 +128,7 @@ const Contact = () => {
                   id={name}
                   value={formValues[name]}
                   onChange={handleInputChange}
+                  placeholder={placeholder}
                   className={`h-10 rounded-md p-4 border-b-2 ${
                     errors[name] ? "border-[var(--Pink)]" : ""
                   }`}
@@ -141,7 +142,7 @@ const Contact = () => {
             ))}
             <button
               type="submit"
-              className="lg:col-span-2 bg-[var(--Pink)] text-white font-bold py-2 px-4 rounded-md"
+              className="lg:col-span-2 bg-[var(--Light)] text-white font-bold py-3 px-5 rounded-md text-lg"
             >
               Submit
             </button>
