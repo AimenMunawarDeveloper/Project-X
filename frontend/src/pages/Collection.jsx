@@ -66,35 +66,37 @@ const Collection = () => {
   };
 
   return (
-    <div className="bg-[var(--Background)]">
-      <div className="p-4 flex flex-wrap justify-between text-base">
-        <div className=" font-bold text-3xl text-[var(--Yellow)] py-4 md:py-0">
+    <div className="bg-[var(--Background)] px-10">
+      <div className="flex flex-wrap justify-between text-base py-4">
+        <div className="font-bold text-3xl text-[var(--Light)] py-4 md:py-0">
           _Our Collection_.
         </div>
-        <div className=" block  md:flex ">
+        <div className="block md:flex">
           <select
-            className="bg-[var(--Background)] pr-10 pl-2  mr-2 text-[var(--Yellow)] border border-gray-400 rounded-md"
+            className="bg-[var(--Background)] pr-10 pl-2 mr-2 text-[var(--Brown)] border border-gray-400 rounded-md"
             value={Subcat}
             onChange={handleSubCategories}
           >
             <option value={"Default"}>DEFAULT</option>
-            <option value={"Women"}>WOMEN</option>
-            <option value={"Men"}>MEN</option>
-            <option value={"Kids"}>KIDS</option>
+            <option value={"Software"}>SOFTWARE</option>
+            <option value={"Hardware"}>HARDWARE</option>
+            <option value={"Research"}>RESEARCH</option>
+            <option value={"Design"}>DESIGN</option>
           </select>
           <select
-            className="bg-[var(--Background)] pr-10 pl-2  mr-2 text-[var(--Yellow)] border border-gray-400 rounded-md"
+            className="bg-[var(--Background)] pr-10 pl-2 mr-2 text-[var(--Brown)] border border-gray-400 rounded-md hover:border-[var(--Brown)] focus:border-[var(--Brown)] focus:outline-none focus:ring-0 cursor-pointer"
             value={cat}
             onChange={handleCategories}
           >
             <option value={"Default"}>DEFAULT</option>
-            <option value={"Bottoms"}>BOTTOMS</option>
-            <option value={"Tops"}>TOPS</option>
-            <option value={"Shirts"}>SHIRTS</option>
-            <option value={"Hoodies"}>HOODIES</option>
+            <option value={"Web"}>WEB DEVELOPMENT</option>
+            <option value={"Mobile"}>MOBILE APPS</option>
+            <option value={"AI"}>AI & ML</option>
+            <option value={"IoT"}>IoT PROJECTS</option>
+            <option value={"Database"}>DATABASE SYSTEMS</option>
           </select>
           <select
-            className="bg-[var(--Background)] md:pr-10 md:pl-2 text-[var(--Yellow)] border border-gray-400 rounded-md"
+            className="bg-[var(--Background)] md:pr-10 md:pl-2 text-[var(--Brown)] border border-gray-400 rounded-md hover:border-[var(--Brown)] focus:border-[var(--Brown)] focus:outline-none focus:ring-0 cursor-pointer"
             value={sortOption}
             onChange={handleSortChange}
           >
@@ -105,10 +107,10 @@ const Collection = () => {
         </div>
       </div>
       <div className="flex justify-center">
-        <div className="relative w-3/4 m-3">
+        <div className="relative w-3/4 my-3">
           <input
             type="text"
-            className="w-full rounded-2xl py-1 px-3 border border-[var(--LightBrown)] text-md text-[var(--Brown)]"
+            className="w-full rounded-2xl py-1 px-3 border border-[var(--LightBrown)] text-md text-[var(--Brown)] min-h-10"
             placeholder="Search..."
             value={searchQuery}
             onChange={handleSearchChange}

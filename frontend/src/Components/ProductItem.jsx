@@ -32,9 +32,9 @@ const ProductItem = ({ id, title, image, price }) => {
         </div>
 
         <div className="p-4">
-          <h2 className="text-lg font-semibold text-[var(--Pink)]">{title}</h2>
-          <p className="text-sm text-[var(--Yellow)] gmt-2">
-            {curr}
+          <h2 className="text-lg font-semibold text-[var(--Brown)]">{title}</h2>
+          <p className="text-md text-[var(--LightBrown)] gmt-2">
+            {curr}.
             {price}
           </p>
         </div>
