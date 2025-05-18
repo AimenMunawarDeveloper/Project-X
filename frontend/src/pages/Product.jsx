@@ -105,9 +105,9 @@ const Product = () => {
           </p>
 
           <ul className="text-[var(--Brown)] text-lg list-disc pb-8 mx-6 my-10">
-            <li>Guaranteed Original Product</li>
-            <li>Cash on delivery or card</li>
-            <li>Return of product within a week</li>
+            <li>Verified Project Code & Documentation</li>
+            <li>Free Technical Support for 30 Days</li>
+            <li>Source Code with MIT License</li>
           </ul>
         </div>
       </div>

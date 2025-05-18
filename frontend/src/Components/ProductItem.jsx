@@ -13,7 +13,7 @@ const ProductItem = ({ id, title, image, price }) => {
         className="block m-3 p-2 border rounded-md shadow-md cursor-pointer hover:scale-105 transition-all"
         data-testid={`product-${id}`}
         style={{
-          height: "350px", // Ensure all cards have the same height
+          height: "380px", // Ensure all cards have the same height
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between", // Ensure even spacing for content
