@@ -9,6 +9,8 @@ const productSchema = new mongoose.Schema({
   subCategory: { type: String, required: true },
   BestSell: { type: Boolean },
   date: { type: Number, required: true },
+  projectFiles: { type: String, required: true }, // URL to zip file containing project code
+  documentation: { type: String, required: true }, // URL to PDF documentation
 });
 
 const productModel =

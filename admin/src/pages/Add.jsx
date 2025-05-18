@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 
 const Add = ({ token }) => {
   const [image, setImage] = useState(null);
+  const [projectFiles, setProjectFiles] = useState(null);
+  const [documentation, setDocumentation] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -17,12 +19,10 @@ const Add = ({ token }) => {
   const validateForm = () => {
     const newErrors = {};
     if (!title.trim() || !/^[a-zA-Z0-9\s]+$/.test(title)) {
-      newErrors.title =
-        "Project Name must be alphanumeric and cannot be empty.";
+      newErrors.title = "Project Name must be alphanumeric and cannot be empty.";
     }
     if (!description.trim() || description.length < 10) {
-      newErrors.description =
-        "Description must be at least 10 characters long.";
+      newErrors.description = "Description must be at least 10 characters long.";
     }
     if (!price || isNaN(price) || Number(price) <= 0) {
       newErrors.price = "Price must be a positive number.";
@@ -35,6 +35,12 @@ const Add = ({ token }) => {
     }
     if (!image) {
       newErrors.image = "Project image is required.";
+    }
+    if (!projectFiles) {
+      newErrors.projectFiles = "Project code files (ZIP) are required.";
+    }
+    if (!documentation) {
+      newErrors.documentation = "Project documentation (PDF) is required.";
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -58,6 +64,8 @@ const Add = ({ token }) => {
       formData.append("subCategory", subCategory);
       formData.append("BestSell", BestSell);
       formData.append("image", image);
+      formData.append("projectFiles", projectFiles);
+      formData.append("documentation", documentation);
 
       const response = await axios.post(
         backendUrl + "/api/product/add",
@@ -75,6 +83,8 @@ const Add = ({ token }) => {
         setTitle("");
         setDescription("");
         setImage(null);
+        setProjectFiles(null);
+        setDocumentation(null);
         setPrice("");
         setCategory("Web");
         setSubCategory("Software");
@@ -134,11 +144,76 @@ const Add = ({ token }) => {
               }}
               type="file"
               id="image"
+              accept="image/*"
               hidden
             />
           </label>
           {errors.image && (
             <p className="text-red-500 text-sm mt-1">{errors.image}</p>
+          )}
+        </div>
+
+        <div className="col-span-1">
+          <p className="text-xl font-semibold text-darkbrown mb-4">
+            Upload Project Files (ZIP)
+          </p>
+          <label
+            htmlFor="projectFiles"
+            className="cursor-pointer flex items-center justify-center border-2 border-gray-300 rounded-lg h-40 bg-gray-50 hover:bg-gray-100"
+          >
+            <div className="text-center">
+              <p className="text-lg text-gray-600">
+                {projectFiles ? projectFiles.name : "Click to upload ZIP file"}
+              </p>
+              <p className="text-sm text-gray-500 mt-2">Max size: 50MB</p>
+            </div>
+            <input
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  setProjectFiles(file);
+                }
+              }}
+              type="file"
+              id="projectFiles"
+              accept=".zip"
+              hidden
+            />
+          </label>
+          {errors.projectFiles && (
+            <p className="text-red-500 text-sm mt-1">{errors.projectFiles}</p>
+          )}
+        </div>
+
+        <div className="col-span-1 sm:col-span-2">
+          <p className="text-xl font-semibold text-darkbrown mb-4">
+            Upload Documentation (PDF)
+          </p>
+          <label
+            htmlFor="documentation"
+            className="cursor-pointer flex items-center justify-center border-2 border-gray-300 rounded-lg h-32 bg-gray-50 hover:bg-gray-100"
+          >
+            <div className="text-center">
+              <p className="text-lg text-gray-600">
+                {documentation ? documentation.name : "Click to upload PDF documentation"}
+              </p>
+              <p className="text-sm text-gray-500 mt-2">Max size: 50MB</p>
+            </div>
+            <input
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  setDocumentation(file);
+                }
+              }}
+              type="file"
+              id="documentation"
+              accept=".pdf"
+              hidden
+            />
+          </label>
+          {errors.documentation && (
+            <p className="text-red-500 text-sm mt-1">{errors.documentation}</p>
           )}
         </div>
 
@@ -151,7 +226,7 @@ const Add = ({ token }) => {
             value={title}
             className="w-full px-4 py-2 border rounded-md border-lightBrown"
             type="text"
-            placeholder="Enter product name"
+            placeholder="Enter project name"
             required
           />
           {errors.title && (
@@ -165,7 +240,7 @@ const Add = ({ token }) => {
             onChange={(e) => setDescription(e.target.value)}
             value={description}
             className="w-full px-4 py-2 border rounded-md border-lightBrown"
-            placeholder="Write product description"
+            placeholder="Write project description"
             rows="4"
             required
           />
@@ -240,7 +315,7 @@ const Add = ({ token }) => {
 
         <button
           type="submit"
-          className="col-span-1 sm:col-span-2 py-3 mt-6 bg-brown rounded-lg text-white font-semibold"
+          className="col-span-1 sm:col-span-2 py-3 mt-6 bg-brown rounded-lg text-white font-semibold hover:bg-opacity-90 transition-all"
         >
           Upload Project
         </button>
