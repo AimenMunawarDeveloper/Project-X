@@ -4,16 +4,28 @@ import productModel from "../models/productModel.js";
 // function for add product
 const addProduct = async (req, res) => {
   try {
-    const { title, description, price, category, subCategory, BestSell } =
-      req.body;
+    const { title, description, price, category, subCategory, BestSell } = req.body;
     const image = req.file;
-    let imageUrl = "";
-    if (image) {
+
+    if (!image) {
+      return res.json({ success: false, message: "Image is required" });
+    }
+
+    let imageUrl;
+    try {
       const result = await cloudinary.uploader.upload(image.path, {
         resource_type: "image",
       });
       imageUrl = result.secure_url;
+      
+      if (!imageUrl) {
+        return res.json({ success: false, message: "Failed to upload image to Cloudinary" });
+      }
+    } catch (cloudinaryError) {
+      console.error("Cloudinary upload error:", cloudinaryError);
+      return res.json({ success: false, message: "Error uploading image to cloud storage" });
     }
+
     const productData = {
       title,
       description,
@@ -24,15 +36,19 @@ const addProduct = async (req, res) => {
       image: imageUrl,
       date: Date.now(),
     };
-    // console.log(productData);
+
+    console.log("Saving product with data:", productData);
+    
     const product = new productModel(productData);
     await product.save();
+    
     res.json({ success: true, message: "Product Added" });
   } catch (error) {
-    console.log(error);
+    console.error("Product addition error:", error);
     res.json({ success: false, message: error.message });
   }
 };
+
 // function for list product
 const listProducts = async (req, res) => {
   try {
