@@ -122,7 +122,7 @@ const Orders = ({ token }) => {
   return (
     <div>
       <div className="my-5">
-        <h4 className="text-xl font-bold text-brown">
+        <h4 className="text-[var(--Pink)] text-3xl font-bold">
           Sales & Orders Over Time
         </h4>
         <div className="flex space-x-4 mt-5">

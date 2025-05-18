@@ -55,7 +55,7 @@ const List = ({ token }) => {
 
   return (
     <>
-      <h4 className="text-xl font-bold text-[var(--Brown)] mb-2 ">Products List</h4>
+      <h4 className="text-[var(--Pink)] text-3xl font-bold mb-2 ">Products List</h4>
       <div className="flex flex-wrap gap-4">
         {list.map((item, index) => (
           <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2 shadow-md shadow-[var(--Background)]" key={index}>

@@ -70,20 +70,20 @@ const Product = () => {
         </div>
         <div className=" lg:w-2/4 p-10">
           <h1
-            className="text-[var(--Pink)] text-3xl font-bold pb-2 pt-5 lg:pt-0"
+            className="text-[var(--Brown)] text-3xl font-bold pb-2 pt-5 lg:pt-0"
             data-testid="product-title"
           >
             {isData.title}
           </h1>
           <hr />
-          <p className="py-2 text-gray-600 text-lg" data-testid="product-price">
+          <p className="py-2 text-gray-600 text-xl" data-testid="product-price">
             {`${curr}.${isData.price}`}
           </p>
 
-          <p className="py-2 text-gray-600 text-md">
+          <p className="py-2 text-gray-600 text-lg">
             Category: {isData.category}
           </p>
-          <p className="py-2 text-gray-600 text-md">
+          <p className="py-2 text-gray-600 text-lg">
             SubCategory: {isData.subCategory}
           </p>
 

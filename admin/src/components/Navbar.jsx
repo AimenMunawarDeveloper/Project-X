@@ -4,7 +4,7 @@ const Navbar = ({ setToken }) => {
   return (
     <div className="flex items-center py-4 px-[4%] justify-between">
       <h1 className="text-3xl font-bold text-black">
-        <span className="text-[var(--Pink)]">Craftsy </span> Admin Dashboard
+        <span className="text-[var(--Pink)]">Project X</span> <span className="text-[var(--Brown)]">Admin Dashboard</span>
       </h1>
       <button
         onClick={() => setToken("")}
