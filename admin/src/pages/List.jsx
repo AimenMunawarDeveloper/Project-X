@@ -62,7 +62,7 @@ const List = ({ token }) => {
             <div className="border rounded-lg shadow-lg p-4 flex flex-col items-center h-full bg-[var(--Background)]">
               <img
                 className="w-full h-48 object-cover rounded-t-lg"
-                src={item.image[0]}
+                src={item.image}
                 alt={item.title}
               />
               <div className="flex flex-col justify-between w-full h-full mt-4">

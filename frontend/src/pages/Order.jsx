@@ -79,8 +79,8 @@ const Order = () => {
                 >
                   <div className="flex gap-5 col-span-1 md:col-span-2">
                     <img
-                      src={item.image?.[0] || "/path/to/default-image.jpg"} // Fallback for missing image
-                      alt={item.name || "Product"}
+                      src={item.image || "/placeholder-image.jpg"}
+                      alt={item.title || "Product"}
                       className="w-24 sm:w-32 md:w-40 rounded-md shadow-md"
                     />
                     <div className="flex flex-col">

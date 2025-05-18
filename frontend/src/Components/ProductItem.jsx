@@ -21,7 +21,7 @@ const ProductItem = ({ id, title, image, price }) => {
       >
         <div className="relative">
           <img
-            src={image[0]}
+            src={image}
             alt={title}
             className="w-full h-60 object-cover object-center"
             style={{
@@ -42,10 +42,11 @@ const ProductItem = ({ id, title, image, price }) => {
     </div>
   );
 };
+
 ProductItem.propTypes = {
-  id: PropTypes.string.isRequired, // ID should be a number and is required
+  id: PropTypes.string.isRequired, // ID should be a string and is required
   title: PropTypes.string.isRequired, // Title should be a string and is required
-  image: PropTypes.array.isRequired, // Image should be an array and is required
+  image: PropTypes.string.isRequired, // Image should be a string (URL) and is required
   price: PropTypes.string.isRequired, // Price should be a string and is required
 };
 
