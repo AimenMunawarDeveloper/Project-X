@@ -9,10 +9,9 @@ const Add = ({ token }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("Tops");
-  const [subCategory, setSubCategory] = useState("Men");
+  const [category, setCategory] = useState("Web");
+  const [subCategory, setSubCategory] = useState("Software");
   const [BestSell, setBestSell] = useState(false);
-  const [sizes, setSizes] = useState([]);
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
@@ -33,9 +32,6 @@ const Add = ({ token }) => {
     }
     if (!subCategory.trim()) {
       newErrors.subCategory = "Sub-Category is required.";
-    }
-    if (sizes.length === 0) {
-      newErrors.sizes = "Select at least one size.";
     }
     if (!image) {
       newErrors.image = "Project image is required.";
@@ -61,7 +57,6 @@ const Add = ({ token }) => {
       formData.append("category", category);
       formData.append("subCategory", subCategory);
       formData.append("BestSell", BestSell);
-      formData.append("sizes", JSON.stringify(sizes));
       formData.append("image", image);
 
       const response = await axios.post(
@@ -81,10 +76,9 @@ const Add = ({ token }) => {
         setDescription("");
         setImage(null);
         setPrice("");
-        setCategory("Men");
-        setSubCategory("Tops");
+        setCategory("Web");
+        setSubCategory("Software");
         setBestSell(false);
-        setSizes([]);
         setErrors({});
       } else {
         toast.update(loadingToast, {
@@ -202,10 +196,11 @@ const Add = ({ token }) => {
             onChange={(e) => setCategory(e.target.value)}
             className="w-full px-4 py-2 border rounded-md border-lightBrown"
           >
-            <option value="Tops">Tops</option>
-            <option value="Bottoms">Bottoms</option>
-            <option value="Hoodies">Hoodies</option>
-            <option value="Shirts">Shirts</option>
+            <option value="Web">WEB DEVELOPMENT</option>
+            <option value="Mobile">MOBILE APPS</option>
+            <option value="AI">AI & ML</option>
+            <option value="IoT">IoT PROJECTS</option>
+            <option value="Database">DATABASE SYSTEMS</option>
           </select>
           {errors.category && (
             <p className="text-red-500 text-sm">{errors.category}</p>
@@ -221,42 +216,13 @@ const Add = ({ token }) => {
             onChange={(e) => setSubCategory(e.target.value)}
             className="w-full px-4 py-2 border rounded-md border-lightBrown"
           >
-            <option value="Men">Men</option>
-            <option value="Women">Women</option>
-            <option value="Kids">Kids</option>
+            <option value="Software">SOFTWARE</option>
+            <option value="Hardware">HARDWARE</option>
+            <option value="Research">RESEARCH</option>
+            <option value="Design">DESIGN</option>
           </select>
           {errors.subCategory && (
             <p className="text-red-500 text-sm">{errors.subCategory}</p>
-          )}
-        </div>
-
-        <div className="col-span-1 sm:col-span-2">
-          <p className="text-sm font-medium text-darkbrown mb-2">
-            Product Sizes
-          </p>
-          <div className="flex gap-4 flex-wrap">
-            {["S", "M", "L", "XL", "XXL"].map((size) => (
-              <div
-                key={size}
-                onClick={() =>
-                  setSizes((prev) =>
-                    prev.includes(size)
-                      ? prev.filter((item) => item !== size)
-                      : [...prev, size]
-                  )
-                }
-                className={`px-4 py-2 cursor-pointer rounded-md border ${
-                  sizes.includes(size)
-                    ? "bg-lightBrown border-darkbrown"
-                    : "border-lightBrown"
-                }`}
-              >
-                {size}
-              </div>
-            ))}
-          </div>
-          {errors.sizes && (
-            <p className="text-red-500 text-sm">{errors.sizes}</p>
           )}
         </div>
 

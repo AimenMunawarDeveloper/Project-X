@@ -151,16 +151,16 @@ const PlaceOrder = () => {
         <div className="border-2 border-[var(--Pink)] bg-[var(--Pink)] p-5 shadow-lg rounded-md">
           <form className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {[
-              { name: "fname", label: "First Name", type: "text" },
-              { name: "lname", label: "Last Name", type: "text" },
-              { name: "email", label: "Email Address", type: "email" },
-              { name: "street", label: "Street Address", type: "text" },
-              { name: "city", label: "City", type: "text" },
-              { name: "state", label: "State", type: "text" },
-              { name: "zipcode", label: "ZipCode", type: "text" },
-              { name: "country", label: "Country", type: "text" },
-              { name: "phone", label: "Phone Number", type: "tel" },
-            ].map(({ name, label, type }, idx) => (
+              { name: "fname", label: "First Name", type: "text", placeholder: "Muhammad" },
+              { name: "lname", label: "Last Name", type: "text", placeholder: "Ahmed" },
+              { name: "email", label: "Email Address", type: "email", placeholder: "muhammad.ahmed@gmail.com" },
+              { name: "street", label: "Street Address", type: "text", placeholder: "House 123, Street 4, F-8/1" },
+              { name: "city", label: "City", type: "text", placeholder: "Islamabad" },
+              { name: "state", label: "State", type: "text", placeholder: "Federal Territory" },
+              { name: "zipcode", label: "ZipCode", type: "text", placeholder: "44000" },
+              { name: "country", label: "Country", type: "text", placeholder: "Pakistan" },
+              { name: "phone", label: "Phone Number", type: "tel", placeholder: "+92 300 1234567" },
+            ].map(({ name, label, type, placeholder }, idx) => (
               <div
                 key={name}
                 className={`flex flex-col ${
@@ -176,12 +176,13 @@ const PlaceOrder = () => {
                   type={type}
                   name={name}
                   id={name}
+                  placeholder={placeholder}
                   className={`h-10 rounded-md p-4 ${
                     errors[name] ? "border-[var(--Pink)] border-2" : ""
                   }`}
                 />
                 {errors[name] && (
-                  <span className="text-[var(--Pink)] text-sm mt-1">
+                  <span className="text-red-500 text-sm mt-1 font-semibold p-1 rounded">
                     {errors[name]}
                   </span>
                 )}
@@ -196,7 +197,7 @@ const PlaceOrder = () => {
               onClick={() => setMethod("stripe")}
               className={`flex items-center gap-4 border-2 p-4 cursor-pointer rounded-lg  ${
                 method === "stripe"
-                  ? "border-[var(--Pink)] bg-[var(--Light)] shadow-md"
+                  ? "border-[var(--Pink)] bg-[var(--Yellow)] shadow-md"
                   : "border-gray-300 bg-white"
               }`}
               data-testid="payment-method-stripe"
@@ -220,7 +221,7 @@ const PlaceOrder = () => {
               onClick={() => setMethod("razorpay")}
               className={`flex items-center gap-4 border-2 p-4 cursor-pointer rounded-lg  ${
                 method === "razorpay"
-                  ? "border-[var(--Pink)] bg-[var(--Light)] shadow-md"
+                  ? "border-[var(--Pink)] bg-[var(--Yellow)] shadow-md"
                   : "border-gray-300 bg-white"
               }`}
               data-testid="payment-method-razorpay"
@@ -244,7 +245,7 @@ const PlaceOrder = () => {
               onClick={() => setMethod("cod")}
               className={`flex items-center gap-4 border-2 p-4 cursor-pointer rounded-lg ${
                 method === "cod"
-                  ? "border-[var(--Pink)] bg-[var(--Light)] shadow-md"
+                  ? "border-[var(--Pink)] bg-[var(--Yellow)] shadow-md"
                   : "border-gray-300 bg-white"
               }`}
               data-testid="payment-method-cod"
@@ -258,7 +259,7 @@ const PlaceOrder = () => {
                   <div className="w-2.5 h-2.5 bg-white rounded-full"></div>
                 )}
               </div>
-              <span>Cash on Delivery</span>
+              <span className="text-lg">Cash on Delivery</span>
             </div>
           </div>
         </div>
@@ -266,7 +267,7 @@ const PlaceOrder = () => {
       <div className="bg-white p-10 rounded-md shadow-lg">
         <Total deliveryCharges={method === "cod" ? Delivery_charges : 0} />
         <button
-          className="bg-[var(--LightBrown)] p-2 rounded-md mt-3"
+          className="bg-[var(--Light)] text-[var(--Background)] p-2 rounded-md mt-3"
           onClick={placeOrder}
         >
           Place Order

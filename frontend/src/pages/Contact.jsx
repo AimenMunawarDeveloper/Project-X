@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 
 const Contact = () => {
   const [errors, setErrors] = useState({});
+  const [sending, setSending] = useState(false);
   const [formValues, setFormValues] = useState({
     fname: "",
     lname: "",
@@ -51,6 +52,7 @@ const Contact = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
+        setSending(true);
         const response = await fetch("http://localhost:4000/api/user/contact", {
           method: "POST",
           headers: {
@@ -85,6 +87,8 @@ const Contact = () => {
       } catch (error) {
         console.error("Error submitting form:", error);
         toast.error(error.message);
+      } finally {
+        setSending(false);
       }
     }
   };
@@ -109,7 +113,7 @@ const Contact = () => {
               { name: "state", label: "State", type: "text", placeholder: "Federal Territory" },
               { name: "zipcode", label: "ZipCode", type: "text", placeholder: "44000" },
               { name: "country", label: "Country", type: "text", placeholder: "Pakistan" },
-              { name: "phone", label: "Phone Number", type: "tel", placeholder: "03XX-XXXXXXX" },
+              { name: "phone", label: "Phone Number", type: "tel", placeholder: "03XXXXXXXXX" },
             ].map(({ name, label, type, placeholder }) => (
               <div
                 key={name}
@@ -142,9 +146,14 @@ const Contact = () => {
             ))}
             <button
               type="submit"
-              className="lg:col-span-2 bg-[var(--Light)] text-white font-bold py-3 px-5 rounded-md text-lg"
+              disabled={sending}
+              className={`lg:col-span-2 ${
+                sending 
+                  ? "bg-gray-400 cursor-not-allowed" 
+                  : "bg-[var(--Light)] hover:bg-[var(--LightBrown)]"
+              } text-white font-bold py-3 px-5 rounded-md text-lg transition-colors duration-200`}
             >
-              Submit
+              {sending ? "Sending..." : "Submit"}
             </button>
           </form>
         </div>

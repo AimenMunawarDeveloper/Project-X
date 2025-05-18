@@ -139,7 +139,7 @@ const Orders = ({ token }) => {
           ))}
         </div>
 
-        <ResponsiveContainer width="100%" height={300} className="mt-5">
+        <ResponsiveContainer width="100%" height={300} className="mt-5 bg-[var(--Pink)]">
           <LineChart data={salesData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
@@ -158,7 +158,7 @@ const Orders = ({ token }) => {
             <Line
               type="monotone"
               dataKey="sales"
-              stroke="var(--Pink)"
+              stroke="var(--LightBrown)"
               name="Sales"
             />
             <Line
@@ -170,7 +170,7 @@ const Orders = ({ token }) => {
             <Line
               type="monotone"
               dataKey="unitsSold"
-              stroke="var(--DarkBrown)"
+              stroke="var(--Light)"
               name="Units Sold"
             />
           </LineChart>
@@ -184,7 +184,7 @@ const Orders = ({ token }) => {
             <div
               className="grid grid-cols-1 sm:grid-cols-[0.5fr_2fr_1fr] lg:grid-cols-[0.5fr_2fr_1fr_1fr_1fr] gap-3 items-start border-2 border-gray-200 p-5 md:p-8 my-3 md:my-4 text-xs sm:text-sm text-gray-700"
               key={index}
-              style={{ backgroundColor: "var(--Light)" }}
+              style={{ backgroundColor: "var(--Pink)" }}
             >
               <img className="w-12" src={assets.parcel_icon} alt="" />
               <div>
@@ -193,8 +193,8 @@ const Orders = ({ token }) => {
                     return (
                       <p className="py-0.5" key={index}>
                         {item.name} x {item.quantity}{" "}
-                        <span className="text-brown">{item.size}</span>
-                        {index !== order.items.length - 1 && ","}
+                        {/* <span className="text-brown">{item.size}</span>
+                        {index !== order.items.length - 1 && ","} */}
                       </p>
                     );
                   })}
@@ -224,7 +224,7 @@ const Orders = ({ token }) => {
               <select
                 onChange={(event) => statusHandler(event, order._id)}
                 value={order.status}
-                className="p-2 font-semibold bg-lightBrown"
+                className="p-2 font-semibold"
               >
                 <option value="Order Placed">Order Placed</option>
                 <option value="Packing">Packing</option>
