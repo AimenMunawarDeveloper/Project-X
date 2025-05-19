@@ -21,10 +21,11 @@ textarea {
 }
 
 :root {
-  --Light: #5d8b5a; /*for background (Primary)*/
+  --Light: 		#5D8B5A; /*for background (Primary)*/
   --Pink: #e8e2da; /*for text (Muted)*/
-  --LightBrown: #8b6e44; /*Secondary*/
+  --LightBrown: #eab66e; /*Secondary*/
   --Brown: #2a2420; /*kept the same for contrast*/
   --Yellow: #a1be7c; /*Accent*/
   --Background: #f9f7f3; /* BACKGROUND */
+  --SoftCream:#fd7770;
 }
