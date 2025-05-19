@@ -10,6 +10,24 @@ const Collection = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [cat, setCat] = useState("Default");
   const [Subcat, setSubCat] = useState("Default");
+  
+  // Define categories and subcategories to match Add.jsx
+  const categories = [
+    "Web", "Mobile", "Desktop", "Game", "AI", "IoT", "Blockchain", "Other"
+  ];
+  
+  const subCategories = {
+    "Default": ["Default"],
+    "Web": ["Software", "Design", "E-commerce", "Blog", "Portfolio", "Other"],
+    "Mobile": ["Android", "iOS", "React Native", "Flutter", "Other"],
+    "Desktop": ["Windows", "macOS", "Linux", "Cross-platform", "Other"],
+    "Game": ["2D", "3D", "Multiplayer", "Single Player", "Other"],
+    "AI": ["Machine Learning", "Neural Networks", "NLP", "Computer Vision", "Other"],
+    "IoT": ["Home Automation", "Industrial", "Wearables", "Other"],
+    "Blockchain": ["Smart Contracts", "DeFi", "NFT", "Other"],
+    "Other": ["Other"]
+  };
+  
   useEffect(() => {
     let filteredCollection = products.filter((item) => {
       const searchLower = searchQuery.toLowerCase();
@@ -55,12 +73,18 @@ const Collection = () => {
   const handleSortChange = (e) => {
     setSortOption(e.target.value);
   };
+  
   const handleCategories = (e) => {
-    setCat(e.target.value);
+    const newCategory = e.target.value;
+    setCat(newCategory);
+    // Reset subcategory when category changes
+    setSubCat("Default");
   };
+  
   const handleSubCategories = (e) => {
     setSubCat(e.target.value);
   };
+  
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -73,36 +97,40 @@ const Collection = () => {
         </div>
         <div className="block md:flex">
           <select
-            className="bg-[var(--Background)] pr-10 pl-2 mr-2 text-[var(--Brown)] border border-gray-400 rounded-md"
-            value={Subcat}
-            onChange={handleSubCategories}
-          >
-            <option value={"Default"}>DEFAULT</option>
-            <option value={"Software"}>SOFTWARE</option>
-            <option value={"Hardware"}>HARDWARE</option>
-            <option value={"Research"}>RESEARCH</option>
-            <option value={"Design"}>DESIGN</option>
-          </select>
-          <select
             className="bg-[var(--Background)] pr-10 pl-2 mr-2 text-[var(--Brown)] border border-gray-400 rounded-md hover:border-[var(--Brown)] focus:border-[var(--Brown)] focus:outline-none focus:ring-0 cursor-pointer"
             value={cat}
             onChange={handleCategories}
           >
-            <option value={"Default"}>DEFAULT</option>
-            <option value={"Web"}>WEB DEVELOPMENT</option>
-            <option value={"Mobile"}>MOBILE APPS</option>
-            <option value={"AI"}>AI & ML</option>
-            <option value={"IoT"}>IoT PROJECTS</option>
-            <option value={"Database"}>DATABASE SYSTEMS</option>
+            <option value="Default">ALL CATEGORIES</option>
+            {categories.map(category => (
+              <option key={category} value={category}>
+                {category.toUpperCase()}
+              </option>
+            ))}
           </select>
+          
+          <select
+            className="bg-[var(--Background)] pr-10 pl-2 mr-2 text-[var(--Brown)] border border-gray-400 rounded-md hover:border-[var(--Brown)] focus:border-[var(--Brown)] focus:outline-none focus:ring-0 cursor-pointer"
+            value={Subcat}
+            onChange={handleSubCategories}
+            disabled={cat === "Default"}
+          >
+            <option value="Default">ALL SUBCATEGORIES</option>
+            {cat !== "Default" && subCategories[cat].map(subCat => (
+              <option key={subCat} value={subCat}>
+                {subCat.toUpperCase()}
+              </option>
+            ))}
+          </select>
+          
           <select
             className="bg-[var(--Background)] md:pr-10 md:pl-2 text-[var(--Brown)] border border-gray-400 rounded-md hover:border-[var(--Brown)] focus:border-[var(--Brown)] focus:outline-none focus:ring-0 cursor-pointer"
             value={sortOption}
             onChange={handleSortChange}
           >
             <option value={"Default"}>DEFAULT</option>
-            <option value={"LowToHigh"}>LOW TO HIGH</option>
-            <option value={"HighToLow"}>HIGH TO LOW</option>
+            <option value={"LowToHigh"}>PRICE: LOW TO HIGH</option>
+            <option value={"HighToLow"}>PRICE: HIGH TO LOW</option>
           </select>
         </div>
       </div>
@@ -119,7 +147,7 @@ const Collection = () => {
         </div>
       </div>
       <div
-        className="grid grid-cols md:grid-cols-2 lg:grid-cols-4"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
         data-testid="product-collection"
       >
         {ourCollection.map((item, index) => {

@@ -10,3 +10,57 @@
   --Yellow: #a1be7c; /*Accent*/
   --Background: #f9f7f3; /* BACKGROUN */
 }
+
+/* Page Transitions */
+.page-transition {
+  position: relative;
+  min-height: 50vh;
+}
+
+.page-transition.fadeIn {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.page-transition.fadeOut {
+  animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-[var(--Light)] text-white px-4 py-2 rounded-md hover:bg-[var(--LightBrown)] transition-colors duration-300;
+}
+
+.btn-secondary {
+  @apply bg-[var(--Pink)] text-[var(--Brown)] px-4 py-2 rounded-md hover:bg-[var(--Yellow)] transition-colors duration-300;
+}
+
+/* Form styles */
+.form-input {
+  @apply h-10 rounded-md p-4 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--Light)] focus:border-transparent;
+}
+
+.form-label {
+  @apply text-lg font-bold text-[var(--Brown)] mb-2;
+}

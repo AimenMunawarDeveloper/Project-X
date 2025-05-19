@@ -35,6 +35,15 @@ const ShopContextProvider = (props) => {
     findNumberOfItemsInCart(cartClone);
     findTotalAmount(cartClone);
 
+    // Trigger cart animation
+    const cartIcon = document.querySelector('.fa-cart-shopping');
+    if (cartIcon) {
+      cartIcon.classList.add('animate-bounce');
+      setTimeout(() => {
+        cartIcon.classList.remove('animate-bounce');
+      }, 1000);
+    }
+
     if (token) {
       try {
         await axios.post(
@@ -50,9 +59,14 @@ const ShopContextProvider = (props) => {
       }
     }
 
-    toast.success("Item successfully added to the cart", {
+    // Use a more detailed success message with the product name
+    const product = products.find(prod => prod._id === id);
+    const productName = product ? product.title : 'Item';
+    
+    toast.success(`${productName} added to your cart!`, {
       position: "top-right",
       autoClose: 2000,
+      icon: "🛒",
     });
   };
 
