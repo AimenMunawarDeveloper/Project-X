@@ -61,11 +61,11 @@ By creating a centralized academic marketplace with filters, categorization, pee
 
 ## Technologies (Proposed)
 
-- **Frontend**: React.js or Next.js  
+- **Frontend**: React.js 
 - **Backend**: Node.js with Express  
-- **Database**: MongoDB or PostgreSQL  
-- **Authentication**: JWT or OAuth  
-- **Hosting**: Render, Vercel, or Heroku
+- **Database**: MongoDB 
+- **Authentication**: JWT
+- **Hosting**: Vercel
 
 ---
 
