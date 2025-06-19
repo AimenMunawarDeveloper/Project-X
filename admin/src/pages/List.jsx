@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 
 const List = ({ token }) => {
   const [list, setList] = useState([]);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [productToDelete, setProductToDelete] = useState(null);
 
   const fetchList = async () => {
     try {
@@ -21,11 +23,18 @@ const List = ({ token }) => {
     }
   };
 
-  const removeProduct = async (id) => {
+  const handleRemoveClick = (product) => {
+    setProductToDelete(product);
+    setShowConfirmation(true);
+  };
+
+  const handleConfirmRemove = async () => {
+    if (!productToDelete) return;
+    
     try {
       const response = await axios.post(
         backendUrl + "/api/product/remove",
-        { id },
+        { id: productToDelete._id },
         { headers: { token } }
       );
 
@@ -38,7 +47,15 @@ const List = ({ token }) => {
     } catch (error) {
       console.log(error);
       toast.error(error.message);
+    } finally {
+      setShowConfirmation(false);
+      setProductToDelete(null);
     }
+  };
+
+  const handleCancelRemove = () => {
+    setShowConfirmation(false);
+    setProductToDelete(null);
   };
 
   useEffect(() => {
@@ -73,7 +90,7 @@ const List = ({ token }) => {
                   {truncateDescription(item.description, 20)}{" "}
                 </p>
                 <button
-                  onClick={() => removeProduct(item._id)}
+                  onClick={() => handleRemoveClick(item)}
                   className="mt-4 text-white bg-[var(--Light)] hover:bg-[var(--LightBrown)] px-4 py-2 rounded-full focus:outline-none transition-colors duration-300"
                 >
                   Remove
@@ -83,6 +100,33 @@ const List = ({ token }) => {
           </div>
         ))}
       </div>
+
+      {/* Confirmation Dialog */}
+      {showConfirmation && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 animate-fadeIn">
+          <div className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full">
+            <h3 className="text-xl font-bold text-[var(--Brown)] mb-4">Confirm Removal</h3>
+            <p className="mb-6">
+              Are you sure you want to remove <span className="font-bold text-[var(--Light)]">{productToDelete?.title}</span>? 
+              This action cannot be undone.
+            </p>
+            <div className="flex justify-end space-x-3">
+              <button
+                onClick={handleCancelRemove}
+                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[var(--Pink)] transition-colors duration-300"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmRemove}
+                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors duration-300"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

@@ -69,7 +69,7 @@ const Add = ({ token }) => {
       newErrors.price = "Price must be a positive number.";
         } else {
           delete newErrors.price;
-        }
+    }
         break;
       case 'image':
     if (!image) {
@@ -635,7 +635,7 @@ const Add = ({ token }) => {
             value={subCategory}
             onChange={(e) => setSubCategory(e.target.value)}
                 className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--Light)] focus:border-transparent"
-              >
+          >
                 {subCategories[category].map((subCat) => (
                   <option key={subCat} value={subCat}>
                     {subCat}

@@ -8,8 +8,11 @@ import { ShopContext } from "../context/ShopContext";
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [downProfile, setDownProfile] = useState(false);
+  const [cartPreviewOpen, setCartPreviewOpen] = useState(false);
   const {
     numberOfItemsInCart,
+    cart,
+    products,
     navigate,
     token,
     setToken,
@@ -42,7 +45,7 @@ const Navbar = () => {
             to="/"
             className={({ isActive }) =>
               `text-lg cursor-pointer pb-1.5 transition-all duration-300 hover:font-bold hover:scale-105 text-[var(--Pink)] ${
-                isActive ? "border-b-2 border-[var(--Pink)] font-bold" : ""
+                isActive ? "border-b-[3px] border-[var(--Pink)] font-bold" : ""
               }`
             }
           >
@@ -52,7 +55,7 @@ const Navbar = () => {
             to="/Collection"
             className={({ isActive }) =>
               `text-lg cursor-pointer pb-1.5 transition-all duration-300 hover:font-bold hover:scale-105 text-[var(--Pink)] ${
-                isActive ? "border-b-2 border-[var(--Pink)] font-bold" : ""
+                isActive ? "border-b-[3px] border-[var(--Pink)] font-bold" : ""
               }`
             }
           >
@@ -62,7 +65,7 @@ const Navbar = () => {
             to="/About"
             className={({ isActive }) =>
               `text-lg cursor-pointer pb-1.5 transition-all duration-300 hover:font-bold hover:scale-105 text-[var(--Pink)] ${
-                isActive ? "border-b-2 border-[var(--Pink)] font-bold" : ""
+                isActive ? "border-b-[3px] border-[var(--Pink)] font-bold" : ""
               }`
             }
           >
@@ -72,7 +75,7 @@ const Navbar = () => {
             to="/Training"
             className={({ isActive }) =>
               `text-lg cursor-pointer pb-1.5 transition-all duration-300 hover:font-bold hover:scale-105 text-[var(--Pink)] ${
-                isActive ? "border-b-2 border-[var(--Pink)] font-bold" : ""
+                isActive ? "border-b-[3px] border-[var(--Pink)] font-bold" : ""
               }`
             }
           >
@@ -82,7 +85,7 @@ const Navbar = () => {
             to="/Contact"
             className={({ isActive }) =>
               `text-lg cursor-pointer pb-1.5 transition-all duration-300 hover:font-bold hover:scale-105 text-[var(--Pink)] ${
-                isActive ? "border-b-2 border-[var(--Pink)] font-bold" : ""
+                isActive ? "border-b-[3px] border-[var(--Pink)] font-bold" : ""
               }`
             }
           >
@@ -91,7 +94,10 @@ const Navbar = () => {
         </ul>
 
         <div className="flex gap-2 items-baseline ">
-          <div className="relative">
+          <div className="relative"
+            onMouseEnter={() => setCartPreviewOpen(true)}
+            onMouseLeave={() => setCartPreviewOpen(false)}
+          >
             <NavLink to="/Cart">
               <button
                 type="button"
@@ -105,6 +111,41 @@ const Navbar = () => {
                 </i>
               </button>
             </NavLink>
+            {/* Cart Preview Dropdown */}
+            {cartPreviewOpen && (
+              <div className="absolute right-0 mt-2 w-80 bg-white border border-[var(--Pink)] rounded-lg shadow-lg z-30 animate-fadeIn">
+                <div className="p-4">
+                  <h3 className="font-bold text-[var(--Pink)] mb-2">Cart Preview</h3>
+                  {Object.keys(cart).length === 0 ? (
+                    <div className="text-gray-500 text-center py-4">Your cart is empty.</div>
+                  ) : (
+                    <ul className="divide-y divide-gray-200 max-h-56 overflow-y-auto">
+                      {Object.entries(cart).slice(0, 3).map(([id, qty]) => {
+                        const product = products.find((p) => p._id === id);
+                        if (!product) return null;
+                        return (
+                          <li key={id} className="flex items-center gap-3 py-2">
+                            <img src={product.imageUrl || product.image || product.img || '/placeholder.png'} alt={product.title} className="w-12 h-12 object-cover rounded" />
+                            <div className="flex-1">
+                              <div className="font-semibold text-[var(--Brown)]">{product.title}</div>
+                              <div className="text-xs text-gray-500">Qty: {qty}</div>
+                            </div>
+                            <div className="font-bold text-[var(--Pink)]">Rs {product.price * qty}</div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                  {Object.keys(cart).length > 0 && (
+                    <div className="mt-4 text-center">
+                      <NavLink to="/Cart" className="inline-block bg-[var(--Pink)] text-white px-4 py-2 rounded hover:bg-[var(--Brown)] transition-all duration-200 font-semibold">
+                        View Full Cart
+                      </NavLink>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="lg:hidden">
@@ -139,7 +180,7 @@ const Navbar = () => {
                     to="/"
                     className={({ isActive }) =>
                       `block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 ${
-                        isActive ? "font-bold border-l-4 border-[var(--Pink)]" : ""
+                        isActive ? "font-bold border-l-4 border-[var(--Pink)] border-b-[3px]" : ""
                       }`
                     }
                   >
@@ -149,7 +190,7 @@ const Navbar = () => {
                     to="/Collection"
                     className={({ isActive }) =>
                       `block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 ${
-                        isActive ? "font-bold border-l-4 border-[var(--Pink)]" : ""
+                        isActive ? "font-bold border-l-4 border-[var(--Pink)] border-b-[3px]" : ""
                       }`
                     }
                   >
@@ -159,7 +200,7 @@ const Navbar = () => {
                     to="/About"
                     className={({ isActive }) =>
                       `block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 ${
-                        isActive ? "font-bold border-l-4 border-[var(--Pink)]" : ""
+                        isActive ? "font-bold border-l-4 border-[var(--Pink)] border-b-[3px]" : ""
                       }`
                     }
                   >
@@ -169,7 +210,7 @@ const Navbar = () => {
                     to="/Training"
                     className={({ isActive }) =>
                       `block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 ${
-                        isActive ? "font-bold border-l-4 border-[var(--Pink)]" : ""
+                        isActive ? "font-bold border-l-4 border-[var(--Pink)] border-b-[3px]" : ""
                       }`
                     }
                   >
@@ -179,7 +220,7 @@ const Navbar = () => {
                     to="/Contact"
                     className={({ isActive }) =>
                       `block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 ${
-                        isActive ? "font-bold border-l-4 border-[var(--Pink)]" : ""
+                        isActive ? "font-bold border-l-4 border-[var(--Pink)] border-b-[3px]" : ""
                       }`
                     }
                   >

@@ -80,21 +80,23 @@ const Cart = () => {
                       </div>
                     </div>
                     <div className="flex items-center justify-start ml-8">
-                      <div className="flex items-center border-2 border-[var(--Light)] rounded-md">
+                      <div className="flex items-center border-2 border-[var(--Light)] rounded-md bg-gray-100 shadow-sm">
                         <button 
-                          className="px-3 py-1 text-[var(--Light)] hover:bg-[var(--Light)] hover:text-white transition-colors duration-300"
+                          className="px-3 py-1 text-[var(--Light)] hover:bg-[var(--Light)] hover:text-white focus:ring-2 focus:ring-[var(--Pink)] rounded-l-md transition-colors duration-300 text-xl font-bold"
                           onClick={() => handleDecrement(product._id, cart[product._id])}
                           aria-label="Decrease quantity"
+                          title="Decrease quantity"
                         >
                           <FontAwesomeIcon icon={faMinus} />
                         </button>
-                        <span className="w-10 text-center font-medium">
+                        <span className="w-10 text-center font-medium text-lg select-none">
                           {cart[product._id]}
                         </span>
                         <button 
-                          className="px-3 py-1 text-[var(--Light)] hover:bg-[var(--Light)] hover:text-white transition-colors duration-300"
+                          className="px-3 py-1 text-[var(--Light)] hover:bg-[var(--Light)] hover:text-white focus:ring-2 focus:ring-[var(--Pink)] rounded-r-md transition-colors duration-300 text-xl font-bold"
                           onClick={() => handleIncrement(product._id, cart[product._id])}
                           aria-label="Increase quantity"
+                          title="Increase quantity"
                         >
                           <FontAwesomeIcon icon={faPlus} />
                         </button>
@@ -111,11 +113,11 @@ const Cart = () => {
                       className="ml-2 text-red-500 hover:text-red-700 cursor-pointer transition-colors duration-300"
                       onClick={() => handleRemove(product._id, product.title)}
                     >
-                      <FontAwesomeIcon 
-                        icon={faTrash} 
-                        data-testid={`delete-icon-${product._id}`}
+                    <FontAwesomeIcon
+                      icon={faTrash}
+                      data-testid={`delete-icon-${product._id}`}
                         className="hover:scale-110 transition-transform duration-300"
-                      />
+                    />
                     </button>
                   </div>
                   <hr className="my-5 border-gray-300" />
@@ -124,30 +126,39 @@ const Cart = () => {
             })
           ) : (
             <div className="text-center py-10">
-              <FontAwesomeIcon icon={faShoppingBag} className="text-gray-400 text-5xl mb-4" />
-              <p className="text-xl text-gray-600 mb-2">Your cart is empty</p>
-              <p className="text-gray-500 mb-6">Add items to your cart to see them here</p>
+              <FontAwesomeIcon icon={faShoppingBag} className="text-gray-400 text-5xl mb-4 animate-bounce" />
+              <p className="text-2xl text-[var(--Pink)] font-bold mb-2">Your cart is empty</p>
+              <p className="text-gray-600 mb-4">Looks like you haven't added anything yet.</p>
+              <div className="flex flex-col gap-3 items-center mb-6">
               <button 
                 onClick={() => navigate('/Collection')}
-                className="flex items-center justify-center mx-auto bg-[var(--Light)] hover:bg-[var(--LightBrown)] text-white px-6 py-3 rounded-md transition-colors duration-300"
+                  className="flex items-center justify-center bg-[var(--Pink)] hover:bg-[var(--LightBrown)] text-white px-6 py-3 rounded-md transition-colors duration-300 font-semibold shadow"
               >
                 <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
-                Continue Shopping
+                  Browse Collection
+                </button>
+                <button
+                  onClick={() => navigate('/')}
+                  className="flex items-center justify-center bg-[var(--Light)] hover:bg-[var(--Pink)] text-[var(--Pink)] hover:text-white px-6 py-3 rounded-md transition-colors duration-300 font-semibold shadow"
+                >
+                  Go to Home
               </button>
+              </div>
+              <p className="text-gray-500">Check out our latest products and exclusive offers!</p>
             </div>
           )}
         </div>
       </div>
       {cartProducts.length > 0 && (
         <div className="bg-white p-10 rounded-md shadow-lg height-auto inline-block animate-fadeIn">
-          <Total deliveryCharges={200} />
-          <button
+        <Total deliveryCharges={200} />
+        <button
             className="bg-[var(--Light)] hover:bg-[var(--LightBrown)] w-full p-3 rounded-md mt-3 text-[var(--Pink)] font-bold transition-colors duration-300"
-            onClick={() => navigate("/PlaceOrder")}
-          >
-            Place Orders
-          </button>
-        </div>
+          onClick={() => navigate("/PlaceOrder")}
+        >
+          Place Orders
+        </button>
+      </div>
       )}
     </div>
   );

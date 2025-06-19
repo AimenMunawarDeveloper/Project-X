@@ -204,16 +204,16 @@ const Login = () => {
                 Name:
               </label>
               <div className="relative">
-                <input
+              <input
                   onChange={(e) => handleChange(e, setName)}
                   onBlur={() => handleBlur('name')}
-                  value={name}
-                  type="text"
-                  name="name"
-                  id="name"
+                value={name}
+                type="text"
+                name="name"
+                id="name"
                   className={getInputClasses('name')}
-                  placeholder="e.g Aimen"
-                />
+                placeholder="e.g Aimen"
+              />
                 {touched.name && !errors.name && name && (
                   <FontAwesomeIcon 
                     icon={faCheck} 
@@ -240,16 +240,16 @@ const Login = () => {
               Email:
             </label>
             <div className="relative">
-              <input
+            <input
                 onChange={(e) => handleChange(e, setEmail)}
                 onBlur={() => handleBlur('email')}
-                value={email}
-                type="email"
-                name="email"
-                id="email"
+              value={email}
+              type="email"
+              name="email"
+              id="email"
                 className={getInputClasses('email')}
-                placeholder="e.g aimenmunawarofficial@gmail.com"
-              />
+              placeholder="e.g aimenmunawarofficial@gmail.com"
+            />
               {touched.email && !errors.email && email && (
                 <FontAwesomeIcon 
                   icon={faCheck} 
@@ -275,13 +275,13 @@ const Login = () => {
               Password:
             </label>
             <div className="relative">
-              <input
+            <input
                 onChange={(e) => handleChange(e, setPassword)}
                 onBlur={() => handleBlur('password')}
-                value={password}
+              value={password}
                 type={showPassword ? "text" : "password"}
-                name="password"
-                id="password"
+              name="password"
+              id="password"
                 className={getInputClasses('password')}
               />
               <button

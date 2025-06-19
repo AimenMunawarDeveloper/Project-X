@@ -12,6 +12,7 @@ const PlaceOrder = () => {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [addressSuggestions, setAddressSuggestions] = useState([]);
+  const [orderTotal, setOrderTotal] = useState(0);
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
@@ -93,10 +94,10 @@ const PlaceOrder = () => {
       if (!formData.lname) newErrors.lname = "Last name is required.";
       if (!formData.email) newErrors.email = "Email is required.";
       else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-        newErrors.email = "Invalid email address.";
+      newErrors.email = "Invalid email address.";
       }
     }
-    
+
     if (currentStep === 2) {
       if (!formData.street) newErrors.street = "Street address is required.";
       if (!formData.city) newErrors.city = "City is required.";
@@ -104,7 +105,7 @@ const PlaceOrder = () => {
       if (!formData.zipcode) newErrors.zipcode = "Zip code is required.";
       else if (!/^\d{5,10}$/.test(formData.zipcode)) {
         newErrors.zipcode = "ZipCode must be 5-10 digits.";
-      }
+    }
       if (!formData.country) newErrors.country = "Country is required.";
     }
     
@@ -150,6 +151,7 @@ const PlaceOrder = () => {
     }
 
     const finalAmount = calculateFinalAmount();
+    setOrderTotal(finalAmount);
     setLoading(true);
 
     // Convert cart items to the correct format
@@ -334,7 +336,7 @@ const PlaceOrder = () => {
                 {addressSuggestions.length > 0 && (
                   <div className="absolute top-full left-0 right-0 bg-white rounded-md shadow-lg z-10 mt-1">
                     {addressSuggestions.map((suggestion, index) => (
-                      <div 
+              <div
                         key={index}
                         className="p-2 hover:bg-gray-100 cursor-pointer border-b last:border-b-0"
                         onClick={() => selectAddress(suggestion)}
@@ -403,7 +405,7 @@ const PlaceOrder = () => {
                   placeholder="44000"
                   className={`h-10 rounded-md p-4 ${
                     errors.zipcode ? "border-red-500 border-2" : ""
-                  }`}
+              }`}
                 />
                 {errors.zipcode && (
                   <span className="text-red-500 text-sm mt-1 font-semibold p-1 rounded">
@@ -425,7 +427,7 @@ const PlaceOrder = () => {
                   placeholder="Pakistan"
                   className={`h-10 rounded-md p-4 ${
                     errors.country ? "border-red-500 border-2" : ""
-                  }`}
+                }`}
                 />
                 {errors.country && (
                   <span className="text-red-500 text-sm mt-1 font-semibold p-1 rounded">
@@ -472,13 +474,13 @@ const PlaceOrder = () => {
                     placeholder="+92 300 1234567"
                     className={`h-10 rounded-md p-4 ${
                       errors.phone ? "border-red-500 border-2" : ""
-                    }`}
+                }`}
                   />
                   {errors.phone && (
                     <span className="text-red-500 text-sm mt-1 font-semibold p-1 rounded">
                       {errors.phone}
                     </span>
-                  )}
+                )}
                 </div>
               </div>
             </div>
@@ -510,7 +512,7 @@ const PlaceOrder = () => {
                 method === "cod"
                       ? "border-[var(--Light)] bg-[var(--Yellow)] shadow-md"
                       : "border-gray-300 hover:border-[var(--Light)]"
-                  }`}
+              }`}
                 >
                   <FontAwesomeIcon icon={faCashRegister} className="text-xl text-[var(--Light)]" />
                   <div className="flex-1">
@@ -561,7 +563,50 @@ const PlaceOrder = () => {
               </div>
             </div>
             <h2 className="text-2xl font-bold mb-2 text-[var(--Brown)]">Order Successfully Placed!</h2>
-            <p className="text-lg mb-6">Thank you for your purchase. Your order confirmation has been sent to your email.</p>
+            <p className="text-lg mb-6">Thank you for your purchase. You have received project resources by mail.</p>
+            
+            {/* Enhanced order confirmation details */}
+            <div className="bg-white p-4 rounded-md shadow-md mb-6 text-left max-w-xl mx-auto">
+              <h3 className="text-xl font-bold mb-3 text-[var(--Brown)] border-b pb-2">Order Details</h3>
+              
+              <div className="mb-4">
+                <h4 className="font-bold text-[var(--Light)]">Shipping Information</h4>
+                <p>{formData.fname} {formData.lname}</p>
+                <p>{formData.street}</p>
+                <p>{formData.city}, {formData.state} {formData.zipcode}</p>
+                <p>{formData.country}</p>
+                <p>Phone: {formData.phone}</p>
+              </div>
+              
+              <div className="mb-4">
+                <h4 className="font-bold text-[var(--Light)]">Payment Method</h4>
+                <p>{method === "stripe" ? "Credit Card" : "Cash on Delivery"}</p>
+              </div>
+              
+              <div className="mb-4">
+                <h4 className="font-bold text-[var(--Light)]">Order Summary</h4>
+                <div className="grid grid-cols-3 gap-2 font-semibold border-b pb-1 mt-1">
+                  <span>Item</span>
+                  <span className="text-center">Qty</span>
+                  <span className="text-right">Price</span>
+                </div>
+                {cartProducts.map(product => (
+                  <div key={product._id} className="grid grid-cols-3 gap-2 border-b py-1">
+                    <span className="truncate">{product.title}</span>
+                    <span className="text-center">{product.quantity}</span>
+                    <span className="text-right">Rs.{product.price * product.quantity}</span>
+                  </div>
+                ))}
+                <div className="grid grid-cols-3 gap-2 font-bold mt-2">
+                  <span className="col-span-2 text-right">Total:</span>
+                  <span className="text-right">Rs.{orderTotal}</span>
+                </div>
+              </div>
+              
+              <div className="text-center text-sm text-gray-600 mt-4">
+                <p>A copy of these resources has been sent to your email.</p>
+              </div>
+            </div>
             
             <div className="mt-8 flex justify-center gap-4">
               <button
@@ -612,6 +657,18 @@ const PlaceOrder = () => {
         
         <Total deliveryCharges={method === "cod" ? Delivery_charges : 0} />
         
+        {/* Edit Cart Button */}
+        <div className="my-4 text-center">
+          <button
+            onClick={() => navigate("/Cart")}
+            className="text-[var(--Light)] hover:text-[var(--LightBrown)] font-bold py-2 px-4 rounded-md transition-colors duration-300 flex items-center justify-center mx-auto"
+            title="Go back to cart to make changes"
+          >
+            <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
+            Edit Cart
+          </button>
+        </div>
+        
         {/* Step indicator */}
         <div className="mt-6">
           <p className="text-sm text-gray-600 mb-2">Checkout Progress</p>
@@ -653,6 +710,17 @@ const PlaceOrder = () => {
     <div className="p-5 bg-[var(--Background)] grid lg:grid-cols-3 lg:gap-5 sm:grid-cols-1">
       <div className="lg:col-span-2 mb-10">
         <h1 className="font-bold text-2xl mb-5">Checkout</h1>
+        
+        {/* Current Step Heading */}
+        <div className="bg-[var(--Light)] text-white px-4 py-3 rounded-md mb-5 shadow-md animate-fadeIn">
+          <h2 className="font-bold text-xl">
+            {step === 1 && "Step 1: Account Information"}
+            {step === 2 && "Step 2: Shipping Address"}
+            {step === 3 && "Step 3: Payment Method"}
+            {step === 4 && "Order Complete"}
+          </h2>
+        </div>
+        
         {renderStep()}
       </div>
       
