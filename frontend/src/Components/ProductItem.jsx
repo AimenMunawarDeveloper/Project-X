@@ -10,7 +10,7 @@ const ProductItem = ({ id, title, image, price }) => {
     <div>
       <Link
         to={`/Product/${id}`}
-        className="block m-3 p-2 border rounded-md shadow-md cursor-pointer hover:scale-105 transition-all bg-[var(--Muted)]"
+        className="block m-3 p-2 border rounded-md shadow-md cursor-pointer hover:scale-105 transition-all"
         data-testid={`product-${id}`}
         style={{
           height: "380px", // Ensure all cards have the same height
@@ -23,7 +23,7 @@ const ProductItem = ({ id, title, image, price }) => {
           <img
             src={image}
             alt={title}
-            className="w-full h-60 object-cover object-center text-[var(--Primary)]"
+            className="w-full h-60 object-cover object-center"
             style={{
               width: "100%",
               height: "240px",

@@ -54,13 +54,13 @@ const Hero = () => {
         {/* Navigation Buttons */}
         <button
           onClick={handlePrev}
-          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-[var(--Muted)] text-[var(--Primary)] p-2 rounded-full shadow-md text-lg"
+          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-[var(--LightBrown)] text-white p-2 rounded-full shadow-md"
         >
           &larr;
         </button>
         <button
           onClick={handleNext}
-          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-[var(--Muted)] text-[var(--Primary)]  p-2 rounded-full shadow-md text-lg"
+          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-[var(--LightBrown)] text-white p-2 rounded-full shadow-md"
         >
           &rarr;
         </button>
