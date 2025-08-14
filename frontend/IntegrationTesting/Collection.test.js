@@ -31,7 +31,7 @@ describe("Integration Test: Collection and ProductItem Components", () => {
 
   const mockContextValue = {
     products: [],
-    backendUrl: "https://project-x-production-8d2d.up.railway.app/",
+    backendUrl: "https://project-x-production-8d2d.up.railway.app",
     loading: false,
     getProductsData: jest.fn(async () => {
       const response = await axios.get(

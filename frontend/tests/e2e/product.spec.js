@@ -10,7 +10,7 @@ test.describe("Product Page Tests", () => {
 
     // Mock API for product list
     await page.route(
-      "https://project-x-production-8d2d.up.railway.app//api/product/list",
+      "https://project-x-production-8d2d.up.railway.app/api/product/list",
       (route) => {
         console.log("Intercepting API call to /api/product/list");
         route.fulfill({
@@ -37,7 +37,7 @@ test.describe("Product Page Tests", () => {
     );
 
     await page.route(
-      "https://project-x-production-8d2d.up.railway.app//api/cart/add",
+      "https://project-x-production-8d2d.up.railway.app/api/cart/add",
       (route) => {
         console.log("Intercepting API call to /api/cart/add");
         route.fulfill({

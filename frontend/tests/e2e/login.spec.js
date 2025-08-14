@@ -6,7 +6,7 @@ test.describe("Login Page Tests", () => {
 
     // Mock login API
     await page.route(
-      "https://project-x-production-8d2d.up.railway.app//api/user/login",
+      "https://project-x-production-8d2d.up.railway.app/api/user/login",
       (route) => {
         const { email, password } = JSON.parse(route.request().postData());
         if (email === "test@example.com" && password === "password123") {
@@ -33,7 +33,7 @@ test.describe("Login Page Tests", () => {
 
     // Mock sign-up API
     await page.route(
-      "https://project-x-production-8d2d.up.railway.app//api/user/register",
+      "https://project-x-production-8d2d.up.railway.app/api/user/register",
       (route) => {
         const { email, password } = JSON.parse(route.request().postData());
 

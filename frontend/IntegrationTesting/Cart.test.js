@@ -36,7 +36,7 @@ const mockContextValue = {
   curr: "Rs",
   updateQuantity: jest.fn(),
   deleteProductFromCart: jest.fn(),
-  backendUrl: "https://project-x-production-8d2d.up.railway.app/",
+  backendUrl: "https://project-x-production-8d2d.up.railway.app",
 };
 
 const renderWithContext = (component) => {

@@ -5,7 +5,7 @@ describe("API Integration Tests for Login and Sign-Up", () => {
   const mockContextValue = {
     token: null,
     setToken: jest.fn(),
-    backendUrl: "https://project-x-production-8d2d.up.railway.app/",
+    backendUrl: "https://project-x-production-8d2d.up.railway.app",
     navigate: jest.fn(),
   };
   beforeEach(() => {

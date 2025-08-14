@@ -9,7 +9,7 @@ import Login from "./components/Login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const backendUrl = "https://project-x-production-8d2d.up.railway.app/";
+export const backendUrl = "https://project-x-production-8d2d.up.railway.app";
 export const currency = "Rs";
 
 const App = () => {

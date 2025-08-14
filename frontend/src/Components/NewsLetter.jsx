@@ -10,7 +10,7 @@ const NewsLetter = () => {
 
     try {
       const response = await axios.post(
-        "https://project-x-production-8d2d.up.railway.app//api/user/newsletter",
+        "https://project-x-production-8d2d.up.railway.app/api/user/newsletter",
         {
           email: email,
         }

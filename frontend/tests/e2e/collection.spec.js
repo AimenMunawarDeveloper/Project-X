@@ -6,7 +6,7 @@ test.describe("Collection Page Tests", () => {
 
     // Mock API for product list
     await page.route(
-      "https://project-x-production-8d2d.up.railway.app//api/product/list",
+      "https://project-x-production-8d2d.up.railway.app/api/product/list",
       (route) => {
         route.fulfill({
           status: 200,

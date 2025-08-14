@@ -54,7 +54,7 @@ const Contact = () => {
       try {
         setSending(true);
         const response = await fetch(
-          "https://project-x-production-8d2d.up.railway.app//api/user/contact",
+          "https://project-x-production-8d2d.up.railway.app/api/user/contact",
           {
             method: "POST",
             headers: {

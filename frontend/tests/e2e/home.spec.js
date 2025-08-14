@@ -4,7 +4,7 @@ test.describe("Home Page Tests", () => {
   test.beforeEach(async ({ page }) => {
     console.log("Mock API called");
     await page.route(
-      "https://project-x-production-8d2d.up.railway.app//api/product/list",
+      "https://project-x-production-8d2d.up.railway.app/api/product/list",
       (route) =>
         route.fulfill({
           status: 200,
@@ -25,7 +25,7 @@ test.describe("Home Page Tests", () => {
     );
 
     await page.route(
-      "https://project-x-production-8d2d.up.railway.app//api/product/list",
+      "https://project-x-production-8d2d.up.railway.app/api/product/list",
       (route) =>
         route.fulfill({
           status: 200,
@@ -69,7 +69,7 @@ test.describe("Home Page Tests", () => {
 
     // Mock the loading state
     await page.route(
-      "https://project-x-production-8d2d.up.railway.app//api/product/list",
+      "https://project-x-production-8d2d.up.railway.app/api/product/list",
       (route) => {
         route.fulfill({
           status: 200,

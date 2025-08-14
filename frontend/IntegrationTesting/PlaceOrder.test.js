@@ -13,7 +13,7 @@ test("submits an order successfully", async () => {
   const mockContextValue = {
     cart: { product1: { M: 2, L: 1 } },
     totalAmount: 1000,
-    backendUrl: "https://project-x-production-8d2d.up.railway.app/",
+    backendUrl: "https://project-x-production-8d2d.up.railway.app",
     token: "mock-token",
     Delivery_charges: 200,
     products: [{ _id: "product1", price: 500 }],
@@ -51,7 +51,7 @@ test("submits an order successfully", async () => {
   fireEvent.click(getByText(/Place Order/i));
   await waitFor(() => {
     expect(axios.post).toHaveBeenCalledWith(
-      "https://project-x-production-8d2d.up.railway.app//api/order/place",
+      "https://project-x-production-8d2d.up.railway.app/api/order/place",
       expect.objectContaining({
         address: expect.objectContaining({
           firstName: "John",
@@ -87,7 +87,7 @@ test("shows an error if shipping details are incomplete", async () => {
   const mockContextValue = {
     cart: { product1: { M: 2 } },
     totalAmount: 1000,
-    backendUrl: "https://project-x-production-8d2d.up.railway.app/",
+    backendUrl: "https://project-x-production-8d2d.up.railway.app",
     token: "mock-token",
     Delivery_charges: 200,
     products: [{ _id: "product1", price: 500 }],

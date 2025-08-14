@@ -5,7 +5,7 @@ test.describe("Order Page Tests", () => {
     console.log("Mock API called");
 
     await page.route(
-      "https://project-x-production-8d2d.up.railway.app//api/order/userorders",
+      "https://project-x-production-8d2d.up.railway.app/api/order/userorders",
       (route) => {
         const { token } = route.request().headers();
         if (token === "valid-token") {
@@ -72,7 +72,7 @@ test.describe("Order Page Tests", () => {
     page,
   }) => {
     await page.route(
-      "https://project-x-production-8d2d.up.railway.app//api/order/userorders",
+      "https://project-x-production-8d2d.up.railway.app/api/order/userorders",
       (route) => {
         route.fulfill({
           status: 200,

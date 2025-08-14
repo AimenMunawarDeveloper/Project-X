@@ -9,7 +9,7 @@ test.describe("Cart Page Tests", () => {
 
     // Mock API for fetching cart data
     await page.route(
-      "https://project-x-production-8d2d.up.railway.app//api/cart/get",
+      "https://project-x-production-8d2d.up.railway.app/api/cart/get",
       (route) => {
         console.log("Intercepting API call to /api/cart/get");
         route.fulfill({
@@ -28,7 +28,7 @@ test.describe("Cart Page Tests", () => {
 
     // Mock API for fetching product list
     await page.route(
-      "https://project-x-production-8d2d.up.railway.app//api/product/list",
+      "https://project-x-production-8d2d.up.railway.app/api/product/list",
       (route) => {
         console.log("Intercepting API call to /api/product/list");
         route.fulfill({
@@ -60,7 +60,7 @@ test.describe("Cart Page Tests", () => {
     );
 
     await page.route(
-      "https://project-x-production-8d2d.up.railway.app//api/cart/update",
+      "https://project-x-production-8d2d.up.railway.app/api/cart/update",
       (route) => {
         console.log("Intercepting API call to /api/cart/update");
         route.fulfill({
@@ -72,7 +72,7 @@ test.describe("Cart Page Tests", () => {
     );
 
     await page.route(
-      "https://project-x-production-8d2d.up.railway.app//api/cart/delete",
+      "https://project-x-production-8d2d.up.railway.app/api/cart/delete",
       (route) => {
         console.log("Intercepting API call to /api/cart/delete");
         route.fulfill({

@@ -12,7 +12,7 @@ export const ShopContext = createContext();
 const ShopContextProvider = (props) => {
   const curr = "Rs";
   const Delivery_charges = 200;
-  const backendUrl = "https://project-x-production-8d2d.up.railway.app/";
+  const backendUrl = "https://project-x-production-8d2d.up.railway.app";
 
   const [cart, setCart] = useState({});
   const [products, setProducts] = useState([]);
