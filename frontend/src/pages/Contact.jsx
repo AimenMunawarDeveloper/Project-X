@@ -53,13 +53,16 @@ const Contact = () => {
     if (validateForm()) {
       try {
         setSending(true);
-        const response = await fetch("http://localhost:4000/api/user/contact", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formValues),
-        });
+        const response = await fetch(
+          "https://project-x-production-8d2d.up.railway.app//api/user/contact",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formValues),
+          }
+        );
 
         const data = await response.json();
         if (response.ok) {
@@ -105,15 +108,60 @@ const Contact = () => {
             className="grid grid-cols-1 lg:grid-cols-2 gap-5"
           >
             {[
-              { name: "fname", label: "First Name", type: "text", placeholder: "Muhammad" },
-              { name: "lname", label: "Last Name", type: "text", placeholder: "Ahmed" },
-              { name: "email", label: "Email Address", type: "email", placeholder: "muhammad.ahmed@gmail.com" },
-              { name: "street", label: "Street Address", type: "text", placeholder: "House 123, Street 4, F-8/1" },
-              { name: "city", label: "City", type: "text", placeholder: "Islamabad" },
-              { name: "state", label: "State", type: "text", placeholder: "Federal Territory" },
-              { name: "zipcode", label: "ZipCode", type: "text", placeholder: "44000" },
-              { name: "country", label: "Country", type: "text", placeholder: "Pakistan" },
-              { name: "phone", label: "Phone Number", type: "tel", placeholder: "03XXXXXXXXX" },
+              {
+                name: "fname",
+                label: "First Name",
+                type: "text",
+                placeholder: "Muhammad",
+              },
+              {
+                name: "lname",
+                label: "Last Name",
+                type: "text",
+                placeholder: "Ahmed",
+              },
+              {
+                name: "email",
+                label: "Email Address",
+                type: "email",
+                placeholder: "muhammad.ahmed@gmail.com",
+              },
+              {
+                name: "street",
+                label: "Street Address",
+                type: "text",
+                placeholder: "House 123, Street 4, F-8/1",
+              },
+              {
+                name: "city",
+                label: "City",
+                type: "text",
+                placeholder: "Islamabad",
+              },
+              {
+                name: "state",
+                label: "State",
+                type: "text",
+                placeholder: "Federal Territory",
+              },
+              {
+                name: "zipcode",
+                label: "ZipCode",
+                type: "text",
+                placeholder: "44000",
+              },
+              {
+                name: "country",
+                label: "Country",
+                type: "text",
+                placeholder: "Pakistan",
+              },
+              {
+                name: "phone",
+                label: "Phone Number",
+                type: "tel",
+                placeholder: "03XXXXXXXXX",
+              },
             ].map(({ name, label, type, placeholder }) => (
               <div
                 key={name}
@@ -148,8 +196,8 @@ const Contact = () => {
               type="submit"
               disabled={sending}
               className={`lg:col-span-2 ${
-                sending 
-                  ? "bg-gray-400 cursor-not-allowed" 
+                sending
+                  ? "bg-gray-400 cursor-not-allowed"
                   : "bg-[var(--Light)] hover:bg-[var(--LightBrown)]"
               } text-white font-bold py-3 px-5 rounded-md text-lg transition-colors duration-200`}
             >

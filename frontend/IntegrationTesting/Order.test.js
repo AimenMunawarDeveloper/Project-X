@@ -14,7 +14,7 @@ jest.mock("react-toastify", () => ({
 
 describe("Order Component (API Response Handling)", () => {
   const mockContextValue = {
-    backendUrl: "http://localhost:4000",
+    backendUrl: "https://project-x-production-8d2d.up.railway.app/",
     token: "mock-token",
     curr: "Rs",
   };

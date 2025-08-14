@@ -8,57 +8,66 @@ test.describe("Place Order Page Tests", () => {
     });
 
     // Mock API for placing an order
-    await page.route("http://localhost:4000/api/order/place", (route) => {
-      console.log("Intercepting API call to /api/order/place");
-      route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({ success: true, message: "Order Placed" }),
-      });
-    });
+    await page.route(
+      "https://project-x-production-8d2d.up.railway.app//api/order/place",
+      (route) => {
+        console.log("Intercepting API call to /api/order/place");
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({ success: true, message: "Order Placed" }),
+        });
+      }
+    );
 
     // Mock cart and product data
-    await page.route("http://localhost:4000/api/cart/get", (route) => {
-      console.log("Intercepting API call to /api/cart/get");
-      route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({
-          success: true,
-          cartData: {
-            "6768ffd6ad9c9ad645022b9d": { M: 1 },
-            "64bfc9c4b5e9fc00002": { L: 2 },
-          },
-        }),
-      });
-    });
+    await page.route(
+      "https://project-x-production-8d2d.up.railway.app//api/cart/get",
+      (route) => {
+        console.log("Intercepting API call to /api/cart/get");
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            success: true,
+            cartData: {
+              "6768ffd6ad9c9ad645022b9d": { M: 1 },
+              "64bfc9c4b5e9fc00002": { L: 2 },
+            },
+          }),
+        });
+      }
+    );
 
-    await page.route("http://localhost:4000/api/product/list", (route) => {
-      console.log("Intercepting API call to /api/product/list");
-      route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({
-          success: true,
-          products: [
-            {
-              _id: "6768ffd6ad9c9ad645022b9d",
-              title: "Product A",
-              price: 34,
-              category: "Women",
-              image: ["https://via.placeholder.com/150?text=ProductA"],
-            },
-            {
-              _id: "64bfc9c4b5e9fc00002",
-              title: "Product B",
-              price: 50,
-              category: "Men",
-              image: ["https://via.placeholder.com/150?text=ProductB"],
-            },
-          ],
-        }),
-      });
-    });
+    await page.route(
+      "https://project-x-production-8d2d.up.railway.app//api/product/list",
+      (route) => {
+        console.log("Intercepting API call to /api/product/list");
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            success: true,
+            products: [
+              {
+                _id: "6768ffd6ad9c9ad645022b9d",
+                title: "Product A",
+                price: 34,
+                category: "Women",
+                image: ["https://via.placeholder.com/150?text=ProductA"],
+              },
+              {
+                _id: "64bfc9c4b5e9fc00002",
+                title: "Product B",
+                price: 50,
+                category: "Men",
+                image: ["https://via.placeholder.com/150?text=ProductB"],
+              },
+            ],
+          }),
+        });
+      }
+    );
 
     // Navigate to the Place Order page
     await page.goto("http://localhost:5173/PlaceOrder");

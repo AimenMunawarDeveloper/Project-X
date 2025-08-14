@@ -5,62 +5,68 @@ test.describe("Login Page Tests", () => {
     console.log("Mock API called");
 
     // Mock login API
-    await page.route("http://localhost:4000/api/user/login", (route) => {
-      const { email, password } = JSON.parse(route.request().postData());
-      if (email === "test@example.com" && password === "password123") {
-        route.fulfill({
-          status: 200,
-          contentType: "application/json",
-          body: JSON.stringify({
-            success: true,
-            token: "mock-token",
-          }),
-        });
-      } else {
-        route.fulfill({
-          status: 401,
-          contentType: "application/json",
-          body: JSON.stringify({
-            success: false,
-            message: "Invalid credentials",
-          }),
-        });
+    await page.route(
+      "https://project-x-production-8d2d.up.railway.app//api/user/login",
+      (route) => {
+        const { email, password } = JSON.parse(route.request().postData());
+        if (email === "test@example.com" && password === "password123") {
+          route.fulfill({
+            status: 200,
+            contentType: "application/json",
+            body: JSON.stringify({
+              success: true,
+              token: "mock-token",
+            }),
+          });
+        } else {
+          route.fulfill({
+            status: 401,
+            contentType: "application/json",
+            body: JSON.stringify({
+              success: false,
+              message: "Invalid credentials",
+            }),
+          });
+        }
       }
-    });
+    );
 
     // Mock sign-up API
-    await page.route("http://localhost:4000/api/user/register", (route) => {
-      const { email, password } = JSON.parse(route.request().postData());
+    await page.route(
+      "https://project-x-production-8d2d.up.railway.app//api/user/register",
+      (route) => {
+        const { email, password } = JSON.parse(route.request().postData());
 
-      if (email === "existing@example.com") {
-        route.fulfill({
-          status: 400,
-          contentType: "application/json",
-          body: JSON.stringify({
-            success: false,
-            message: "User already exists",
-          }),
-        });
-      } else if (password.length < 8) {
-        route.fulfill({
-          status: 400,
-          contentType: "application/json",
-          body: JSON.stringify({
-            success: false,
-            message: "Please enter a strong password",
-          }),
-        });
-      } else {
-        route.fulfill({
-          status: 200,
-          contentType: "application/json",
-          body: JSON.stringify({
-            success: true,
-            token: "mock-token",
-          }),
-        });
+        if (email === "existing@example.com") {
+          route.fulfill({
+            status: 400,
+            contentType: "application/json",
+            body: JSON.stringify({
+              success: false,
+              message: "User already exists",
+            }),
+          });
+        } else if (password.length < 8) {
+          route.fulfill({
+            status: 400,
+            contentType: "application/json",
+            body: JSON.stringify({
+              success: false,
+              message: "Please enter a strong password",
+            }),
+          });
+        } else {
+          route.fulfill({
+            status: 200,
+            contentType: "application/json",
+            body: JSON.stringify({
+              success: true,
+              token: "mock-token",
+            }),
+          });
+        }
       }
-    });
+    );
 
     await page.goto("http://localhost:5173/login");
   });

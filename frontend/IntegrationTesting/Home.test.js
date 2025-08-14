@@ -44,7 +44,7 @@ describe("Home Component", () => {
   ];
   const mockContextValue = {
     products: [],
-    backendUrl: "http://localhost:4000",
+    backendUrl: "https://project-x-production-8d2d.up.railway.app/",
     loading: false,
     getProductsData: jest.fn(async () => {
       const response = await axios.get(

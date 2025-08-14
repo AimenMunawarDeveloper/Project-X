@@ -12,7 +12,7 @@ export const ShopContext = createContext();
 const ShopContextProvider = (props) => {
   const curr = "Rs";
   const Delivery_charges = 200;
-  const backendUrl = "http://localhost:4000";
+  const backendUrl = "https://project-x-production-8d2d.up.railway.app/";
 
   const [cart, setCart] = useState({});
   const [products, setProducts] = useState([]);
@@ -36,11 +36,11 @@ const ShopContextProvider = (props) => {
     findTotalAmount(cartClone);
 
     // Trigger cart animation
-    const cartIcon = document.querySelector('.fa-cart-shopping');
+    const cartIcon = document.querySelector(".fa-cart-shopping");
     if (cartIcon) {
-      cartIcon.classList.add('animate-bounce');
+      cartIcon.classList.add("animate-bounce");
       setTimeout(() => {
-        cartIcon.classList.remove('animate-bounce');
+        cartIcon.classList.remove("animate-bounce");
       }, 1000);
     }
 
@@ -60,9 +60,9 @@ const ShopContextProvider = (props) => {
     }
 
     // Use a more detailed success message with the product name
-    const product = products.find(prod => prod._id === id);
-    const productName = product ? product.title : 'Item';
-    
+    const product = products.find((prod) => prod._id === id);
+    const productName = product ? product.title : "Item";
+
     toast.success(`${productName} added to your cart!`, {
       position: "top-right",
       autoClose: 2000,

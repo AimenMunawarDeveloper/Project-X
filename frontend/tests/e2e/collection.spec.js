@@ -5,44 +5,47 @@ test.describe("Collection Page Tests", () => {
     console.log("Mock API called");
 
     // Mock API for product list
-    await page.route("http://localhost:4000/api/product/list", (route) => {
-      route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({
-          success: true,
-          products: [
-            {
-              _id: "prod1",
-              title: "Product A",
-              description: "A description",
-              price: 100,
-              category: "Tops",
-              subCategory: "Men",
-              image: ["https://via.placeholder.com/150"],
-            },
-            {
-              _id: "prod2",
-              title: "Product B",
-              description: "B description",
-              price: 200,
-              category: "Bottoms",
-              subCategory: "Women",
-              image: ["https://via.placeholder.com/150"],
-            },
-            {
-              _id: "prod3",
-              title: "Product C",
-              description: "C description",
-              price: 50,
-              category: "Shirts",
-              subCategory: "Kids",
-              image: ["https://via.placeholder.com/150"],
-            },
-          ],
-        }),
-      });
-    });
+    await page.route(
+      "https://project-x-production-8d2d.up.railway.app//api/product/list",
+      (route) => {
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            success: true,
+            products: [
+              {
+                _id: "prod1",
+                title: "Product A",
+                description: "A description",
+                price: 100,
+                category: "Tops",
+                subCategory: "Men",
+                image: ["https://via.placeholder.com/150"],
+              },
+              {
+                _id: "prod2",
+                title: "Product B",
+                description: "B description",
+                price: 200,
+                category: "Bottoms",
+                subCategory: "Women",
+                image: ["https://via.placeholder.com/150"],
+              },
+              {
+                _id: "prod3",
+                title: "Product C",
+                description: "C description",
+                price: 50,
+                category: "Shirts",
+                subCategory: "Kids",
+                image: ["https://via.placeholder.com/150"],
+              },
+            ],
+          }),
+        });
+      }
+    );
 
     // Navigate to the collection page
     await page.goto("http://localhost:5173/collection");

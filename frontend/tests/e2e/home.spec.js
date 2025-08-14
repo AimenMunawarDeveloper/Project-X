@@ -3,42 +3,46 @@ import { test, expect } from "@playwright/test";
 test.describe("Home Page Tests", () => {
   test.beforeEach(async ({ page }) => {
     console.log("Mock API called");
-    await page.route("http://localhost:4000/api/product/list", (route) =>
-      route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({
-          success: true,
-          products: Array(10)
-            .fill(0)
-            .map((_, i) => ({
-              _id: `product${i}`,
-              image: [`https://via.placeholder.com/150?text=Product${i}`],
-              title: `Product ${i}`,
-              price: (i + 1) * 100,
-              BestSell: i % 2 === 0,
-            })),
-        }),
-      })
+    await page.route(
+      "https://project-x-production-8d2d.up.railway.app//api/product/list",
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            success: true,
+            products: Array(10)
+              .fill(0)
+              .map((_, i) => ({
+                _id: `product${i}`,
+                image: [`https://via.placeholder.com/150?text=Product${i}`],
+                title: `Product ${i}`,
+                price: (i + 1) * 100,
+                BestSell: i % 2 === 0,
+              })),
+          }),
+        })
     );
 
-    await page.route("http://localhost:4000/api/product/list", (route) =>
-      route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({
-          success: true,
-          products: Array(10)
-            .fill(0)
-            .map((_, i) => ({
-              _id: `product${i}`,
-              image: [`https://via.placeholder.com/150?text=Product${i}`],
-              title: `Product ${i}`,
-              price: (i + 1) * 100,
-              BestSell: i < 4, // Ensure first 4 products have BestSell: true
-            })),
-        }),
-      })
+    await page.route(
+      "https://project-x-production-8d2d.up.railway.app//api/product/list",
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            success: true,
+            products: Array(10)
+              .fill(0)
+              .map((_, i) => ({
+                _id: `product${i}`,
+                image: [`https://via.placeholder.com/150?text=Product${i}`],
+                title: `Product ${i}`,
+                price: (i + 1) * 100,
+                BestSell: i < 4, // Ensure first 4 products have BestSell: true
+              })),
+          }),
+        })
     );
 
     await page.goto("http://localhost:5173/");
@@ -64,16 +68,19 @@ test.describe("Home Page Tests", () => {
     console.log("Testing loading state...");
 
     // Mock the loading state
-    await page.route("http://localhost:4000/api/product/list", (route) => {
-      route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({
-          success: true,
-          products: [], // Simulate no products initially
-        }),
-      });
-    });
+    await page.route(
+      "https://project-x-production-8d2d.up.railway.app//api/product/list",
+      (route) => {
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            success: true,
+            products: [], // Simulate no products initially
+          }),
+        });
+      }
+    );
 
     await page.goto("http://localhost:5173/");
 

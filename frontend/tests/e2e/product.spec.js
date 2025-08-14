@@ -9,40 +9,47 @@ test.describe("Product Page Tests", () => {
     });
 
     // Mock API for product list
-    await page.route("http://localhost:4000/api/product/list", (route) => {
-      console.log("Intercepting API call to /api/product/list");
-      route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({
-          success: true,
-          products: Array(10)
-            .fill(0)
-            .map((_, i) => ({
-              _id: `64bfc9c4b5e9fc00${i.toString().padStart(3, "0")}`,
-              title: `Product ${i}`,
-              description: `Description for Product ${i}`,
-              price: (i + 1) * 100,
-              category: i % 2 === 0 ? "Tops" : "Bottoms",
-              subCategory: i % 3 === 0 ? "Men" : i % 3 === 1 ? "Women" : "Kids",
-              image: [`https://via.placeholder.com/150?text=Product${i}`],
-              sizes: ["S", "M", "L", "XL"],
-            })),
-        }),
-      });
-    });
+    await page.route(
+      "https://project-x-production-8d2d.up.railway.app//api/product/list",
+      (route) => {
+        console.log("Intercepting API call to /api/product/list");
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            success: true,
+            products: Array(10)
+              .fill(0)
+              .map((_, i) => ({
+                _id: `64bfc9c4b5e9fc00${i.toString().padStart(3, "0")}`,
+                title: `Product ${i}`,
+                description: `Description for Product ${i}`,
+                price: (i + 1) * 100,
+                category: i % 2 === 0 ? "Tops" : "Bottoms",
+                subCategory:
+                  i % 3 === 0 ? "Men" : i % 3 === 1 ? "Women" : "Kids",
+                image: [`https://via.placeholder.com/150?text=Product${i}`],
+                sizes: ["S", "M", "L", "XL"],
+              })),
+          }),
+        });
+      }
+    );
 
-    await page.route("http://localhost:4000/api/cart/add", (route) => {
-      console.log("Intercepting API call to /api/cart/add");
-      route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({
-          success: true,
-          message: "Added To Cart",
-        }),
-      });
-    });
+    await page.route(
+      "https://project-x-production-8d2d.up.railway.app//api/cart/add",
+      (route) => {
+        console.log("Intercepting API call to /api/cart/add");
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            success: true,
+            message: "Added To Cart",
+          }),
+        });
+      }
+    );
 
     // Navigate to the specific product page
     await page.goto("http://localhost:5173/product/64bfc9c4b5e9fc00000");
