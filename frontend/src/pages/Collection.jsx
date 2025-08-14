@@ -144,7 +144,9 @@ const Collection = () => {
             onChange={handleSearchChange}
           />
           <i className="fa-solid fa-magnifying-glass absolute right-3 top-1/2 transform -translate-y-1/2 text-[var(--Brown)]"></i>
+
         </div>
+        <StorePolicy />
       </div>
       <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"

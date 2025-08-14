@@ -50,9 +50,9 @@ const StorePolicy = () => {
               <div className="p-4">
                 <FontAwesomeIcon
                   icon={policy.icon}
-                  className="text-[var(--Brown)]"
+                  className="text-[var(--Primary)]"
                 />
-                <h2 className="text-lg font-semibold text-[var(--Brown)]">
+                <h2 className="text-lg font-semibold text-[var(--Primary)]">
                   {policy.heading}
                 </h2>
                 <h2 className="text-md text-[var(--LightBrown)] mt-2">

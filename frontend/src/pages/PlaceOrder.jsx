@@ -391,7 +391,6 @@ const PlaceOrder = () => {
                   </span>
                 )}
         </div>
-              
               <div className="flex flex-col">
                 <label className="text-lg font-bold" htmlFor="zipcode">
                   ZipCode:
@@ -436,7 +435,8 @@ const PlaceOrder = () => {
                 )}
               </div>
             </div>
-            
+
+ 
             <div className="mt-8 flex justify-between">
               <button
                 onClick={prevStep}

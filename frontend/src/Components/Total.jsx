@@ -8,7 +8,9 @@ const Total = ({ deliveryCharges }) => {
 
   return (
     <div>
-      <h2 className="font-bold text-2xl mb-10">Total Amount</h2>
+      <h2 className="font-bold text-2xl mb-10 text-[var(--Primary)] ">
+        Total Amount
+      </h2>
       <div className="my-1 flex justify-between">
         <p>Subtotal:</p>
         <p>
