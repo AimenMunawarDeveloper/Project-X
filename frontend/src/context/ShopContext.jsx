@@ -22,37 +22,33 @@ const ShopContextProvider = (props) => {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const navigate = useNavigate();
 
-  const addingAnItemToTheCart = async (id, size) => {
-    if (!size) {
-      toast.error("Please select a size", {
-        position: "top-right",
-        autoClose: 2000,
-      });
-      return;
-    }
-
+  const addingAnItemToTheCart = async (id) => {
     const cartClone = structuredClone(cart);
 
     if (cartClone[id]) {
-      if (cartClone[id][size]) {
-        cartClone[id][size]++;
-      } else {
-        cartClone[id][size] = 1;
-      }
+      cartClone[id] += 1;
     } else {
-      cartClone[id] = {};
-      cartClone[id][size] = 1;
+      cartClone[id] = 1;
     }
 
     setCart(cartClone);
     findNumberOfItemsInCart(cartClone);
     findTotalAmount(cartClone);
 
+    // Trigger cart animation
+    const cartIcon = document.querySelector('.fa-cart-shopping');
+    if (cartIcon) {
+      cartIcon.classList.add('animate-bounce');
+      setTimeout(() => {
+        cartIcon.classList.remove('animate-bounce');
+      }, 1000);
+    }
+
     if (token) {
       try {
         await axios.post(
           `${backendUrl}/api/cart/add`,
-          { itemId: id, size },
+          { itemId: id },
           {
             headers: { token },
           }
@@ -63,24 +59,22 @@ const ShopContextProvider = (props) => {
       }
     }
 
-    toast.success("Item successfully added to the cart", {
+    // Use a more detailed success message with the product name
+    const product = products.find(prod => prod._id === id);
+    const productName = product ? product.title : 'Item';
+    
+    toast.success(`${productName} added to your cart!`, {
       position: "top-right",
       autoClose: 2000,
+      icon: "🛒",
     });
   };
 
-  const deleteProductFromCart = async (id, size) => {
+  const deleteProductFromCart = async (id) => {
     const cartClone = structuredClone(cart);
 
     if (cartClone[id]) {
-      if (size) {
-        delete cartClone[id][size];
-        if (Object.keys(cartClone[id]).length === 0) {
-          delete cartClone[id];
-        }
-      } else {
-        delete cartClone[id];
-      }
+      delete cartClone[id];
 
       setCart(cartClone);
       findNumberOfItemsInCart(cartClone);
@@ -90,7 +84,7 @@ const ShopContextProvider = (props) => {
         try {
           await axios.post(
             `${backendUrl}/api/cart/delete`,
-            { itemId: id, size },
+            { itemId: id },
             {
               headers: { token },
             }
@@ -107,14 +101,13 @@ const ShopContextProvider = (props) => {
     }
   };
 
-  const updateQuantity = async (id, size, quantity) => {
+  const updateQuantity = async (id, quantity) => {
     const cartClone = structuredClone(cart);
 
     if (quantity === 0) {
-      delete cartClone[id][size];
-      if (Object.keys(cartClone[id]).length === 0) delete cartClone[id];
+      delete cartClone[id];
     } else {
-      cartClone[id][size] = quantity;
+      cartClone[id] = quantity;
     }
 
     setCart(cartClone);
@@ -125,7 +118,7 @@ const ShopContextProvider = (props) => {
       try {
         await axios.post(
           `${backendUrl}/api/cart/update`,
-          { itemId: id, size, quantity },
+          { itemId: id, quantity },
           {
             headers: { token },
           }
@@ -140,9 +133,7 @@ const ShopContextProvider = (props) => {
   const findNumberOfItemsInCart = (updatedCart) => {
     let totalItems = 0;
     for (const productId in updatedCart) {
-      for (const size in updatedCart[productId]) {
-        totalItems += updatedCart[productId][size];
-      }
+      totalItems += updatedCart[productId];
     }
     setNumberOfItemsInCart(totalItems);
   };
@@ -150,12 +141,10 @@ const ShopContextProvider = (props) => {
   const findTotalAmount = (cart) => {
     let amount = 0;
     for (const productId in cart) {
-      for (const size in cart[productId]) {
-        const product = products.find((prod) => prod._id === productId);
-        if (product) {
-          const quantity = cart[productId][size];
-          amount += product.price * quantity;
-        }
+      const product = products.find((prod) => prod._id === productId);
+      if (product) {
+        const quantity = cart[productId];
+        amount += product.price * quantity;
       }
     }
     setTotalAmount(amount.toFixed(2));

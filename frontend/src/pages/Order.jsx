@@ -74,13 +74,13 @@ const Order = () => {
             <div className="grid gap-5">
               {order.items.map((item) => (
                 <div
-                  key={`${item._id}-${item.size}`}
+                  key={item._id}
                   className="grid grid-cols-1 md:grid-cols-4 gap-5 items-center border-b pb-3 last:border-none"
                 >
                   <div className="flex gap-5 col-span-1 md:col-span-2">
                     <img
-                      src={item.image?.[0] || "/path/to/default-image.jpg"} // Fallback for missing image
-                      alt={item.name || "Product"}
+                      src={item.image || "/placeholder-image.jpg"}
+                      alt={item.title || "Product"}
                       className="w-24 sm:w-32 md:w-40 rounded-md shadow-md"
                     />
                     <div className="flex flex-col">
@@ -90,13 +90,12 @@ const Order = () => {
                       </p>
                       <p className="text-gray-700">
                         {curr}
-                        {item.price} - Quantity: {item.quantity} - Size:{" "}
-                        {item.size}
+                        {item.price} - Quantity: {item.quantity}
                       </p>
                     </div>
                   </div>
                   <div className="flex justify-center md:justify-end">
-                    <button className="px-4 py-2 bg-[var(--Brown)] text-white font-semibold rounded-md">
+                    <button className="px-4 py-2 bg-[var(--Light)] text-white font-semibold rounded-md">
                       {order.status}
                     </button>
                   </div>

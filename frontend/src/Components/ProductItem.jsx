@@ -13,7 +13,7 @@ const ProductItem = ({ id, title, image, price }) => {
         className="block m-3 p-2 border rounded-md shadow-md cursor-pointer hover:scale-105 transition-all bg-[var(--Muted)]"
         data-testid={`product-${id}`}
         style={{
-          height: "350px", // Ensure all cards have the same height
+          height: "380px", // Ensure all cards have the same height
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between", // Ensure even spacing for content
@@ -21,7 +21,7 @@ const ProductItem = ({ id, title, image, price }) => {
       >
         <div className="relative">
           <img
-            src={image[0]}
+            src={image}
             alt={title}
             className="w-full h-60 object-cover object-center text-[var(--Primary)]"
             style={{
@@ -32,11 +32,9 @@ const ProductItem = ({ id, title, image, price }) => {
         </div>
 
         <div className="p-4">
-          <h2 className="text-lg font-semibold text-[var(--Primary)]">
-            {title}
-          </h2>
-          <p className="text-sm text-[var(--Secondary)] gmt-2">
-            {curr}
+          <h2 className="text-lg font-semibold text-[var(--Brown)]">{title}</h2>
+          <p className="text-md text-[var(--LightBrown)] gmt-2">
+            {curr}.
             {price}
           </p>
         </div>
@@ -44,10 +42,11 @@ const ProductItem = ({ id, title, image, price }) => {
     </div>
   );
 };
+
 ProductItem.propTypes = {
-  id: PropTypes.string.isRequired, // ID should be a number and is required
+  id: PropTypes.string.isRequired, // ID should be a string and is required
   title: PropTypes.string.isRequired, // Title should be a string and is required
-  image: PropTypes.array.isRequired, // Image should be an array and is required
+  image: PropTypes.string.isRequired, // Image should be a string (URL) and is required
   price: PropTypes.string.isRequired, // Price should be a string and is required
 };
 

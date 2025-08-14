@@ -8,8 +8,11 @@ import { ShopContext } from "../context/ShopContext";
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [downProfile, setDownProfile] = useState(false);
+  const [cartPreviewOpen, setCartPreviewOpen] = useState(false);
   const {
     numberOfItemsInCart,
+    cart,
+    products,
     navigate,
     token,
     setToken,
@@ -41,8 +44,8 @@ const Navbar = () => {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `text-lg cursor-pointer pb-1.5 transition-all hover:font-bold text-[var(--Pink)] ${
-                isActive ? "border-b-2 border-[var(--Pink)]" : ""
+              `text-lg cursor-pointer pb-1.5 transition-all duration-300 hover:font-bold hover:scale-105 text-[var(--Pink)] ${
+                isActive ? "border-b-[3px] border-[var(--Pink)] font-bold" : ""
               }`
             }
           >
@@ -51,8 +54,8 @@ const Navbar = () => {
           <NavLink
             to="/Collection"
             className={({ isActive }) =>
-              `text-lg cursor-pointer pb-1.5 transition-all hover:font-bold text-[var(--Muted)] ${
-                isActive ? "border-b-2 border-[var(--Background)]" : ""
+              `text-lg cursor-pointer pb-1.5 transition-all duration-300 hover:font-bold hover:scale-105 text-[var(--Pink)] ${
+                isActive ? "border-b-[3px] border-[var(--Pink)] font-bold" : ""
               }`
             }
           >
@@ -61,8 +64,8 @@ const Navbar = () => {
           <NavLink
             to="/About"
             className={({ isActive }) =>
-              `text-lg cursor-pointer pb-1.5 transition-all hover:font-bold text-[var(--Muted)] ${
-                isActive ? "border-b-2 border-[var(--Background)]" : ""
+              `text-lg cursor-pointer pb-1.5 transition-all duration-300 hover:font-bold hover:scale-105 text-[var(--Pink)] ${
+                isActive ? "border-b-[3px] border-[var(--Pink)] font-bold" : ""
               }`
             }
           >
@@ -71,8 +74,8 @@ const Navbar = () => {
           <NavLink
             to="/Training"
             className={({ isActive }) =>
-              `text-lg cursor-pointer pb-1.5 transition-all hover:font-bold text-[var(--Muted)] ${
-                isActive ? "border-b-2 border-[var(--Background)]" : ""
+              `text-lg cursor-pointer pb-1.5 transition-all duration-300 hover:font-bold hover:scale-105 text-[var(--Pink)] ${
+                isActive ? "border-b-[3px] border-[var(--Pink)] font-bold" : ""
               }`
             }
           >
@@ -81,8 +84,8 @@ const Navbar = () => {
           <NavLink
             to="/Contact"
             className={({ isActive }) =>
-              `text-lg cursor-pointer pb-1.5 transition-all hover:font-bold text-[var(--Muted)] ${
-                isActive ? "border-b-2 border-[var(--Background)]" : ""
+              `text-lg cursor-pointer pb-1.5 transition-all duration-300 hover:font-bold hover:scale-105 text-[var(--Pink)] ${
+                isActive ? "border-b-[3px] border-[var(--Pink)] font-bold" : ""
               }`
             }
           >
@@ -91,36 +94,78 @@ const Navbar = () => {
         </ul>
 
         <div className="flex gap-2 items-baseline ">
-          <div>
+          <div className="relative"
+            onMouseEnter={() => setCartPreviewOpen(true)}
+            onMouseLeave={() => setCartPreviewOpen(false)}
+          >
             <NavLink to="/Cart">
               <button
                 type="button"
-                className="text-lg cursor-pointer pb-1.5 transition-all px-2 hover:font-bold font-serif"
+                className="text-lg cursor-pointer pb-1.5 transition-all duration-300 px-2 hover:font-bold hover:scale-105 font-serif"
+                aria-label="Shopping Cart"
               >
-                <i className="fa-solid fa-cart-shopping relative text-[var(--Muted)]">
-                  <p className="absolute right-[-7px] bottom-[-5px] bg-[var(--Secondary)] text-white text-[8px] rounded-full p-1">
+                <i className="fa-solid fa-cart-shopping relative text-[var(--Yellow)]">
+                  <span className="absolute right-[-10px] bottom-[-8px] bg-[var(--Brown)] text-[var(--Pink)] text-xs rounded-full px-2 py-1 min-w-[20px] flex items-center justify-center font-bold">
                     {numberOfItemsInCart || 0}
-                  </p>
+                  </span>
                 </i>
               </button>
             </NavLink>
+            {/* Cart Preview Dropdown */}
+            {cartPreviewOpen && (
+              <div className="absolute right-0 mt-2 w-80 bg-white border border-[var(--Pink)] rounded-lg shadow-lg z-30 animate-fadeIn">
+                <div className="p-4">
+                  <h3 className="font-bold text-[var(--Pink)] mb-2">Cart Preview</h3>
+                  {Object.keys(cart).length === 0 ? (
+                    <div className="text-gray-500 text-center py-4">Your cart is empty.</div>
+                  ) : (
+                    <ul className="divide-y divide-gray-200 max-h-56 overflow-y-auto">
+                      {Object.entries(cart).slice(0, 3).map(([id, qty]) => {
+                        const product = products.find((p) => p._id === id);
+                        if (!product) return null;
+                        return (
+                          <li key={id} className="flex items-center gap-3 py-2">
+                            <img src={product.imageUrl || product.image || product.img || '/placeholder.png'} alt={product.title} className="w-12 h-12 object-cover rounded" />
+                            <div className="flex-1">
+                              <div className="font-semibold text-[var(--Brown)]">{product.title}</div>
+                              <div className="text-xs text-gray-500">Qty: {qty}</div>
+                            </div>
+                            <div className="font-bold text-[var(--Pink)]">Rs {product.price * qty}</div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                  {Object.keys(cart).length > 0 && (
+                    <div className="mt-4 text-center">
+                      <NavLink to="/Cart" className="inline-block bg-[var(--Pink)] text-white px-4 py-2 rounded hover:bg-[var(--Brown)] transition-all duration-200 font-semibold">
+                        View Full Cart
+                      </NavLink>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="lg:hidden text-[var(--Muted)]">
             <button
               onClick={toggleProfile}
               type="button"
-              className="text-lg cursor-pointer pb-1.5 transition-all px-2 hover:font-bold text-[var(--Muted)]"
+              className="text-lg cursor-pointer pb-1.5 transition-all duration-300 px-2 hover:font-bold hover:scale-105"
+              aria-label="User Profile"
             >
-              <i className="fas fa-user text-[var(--Muted)]"></i>
+              <i className="fas fa-user text-[var(--Yellow)]"></i>
             </button>
           </div>
 
           <div className="inline-block cursor-pointer lg:hidden font-bold text-lg pr-3">
             <button
               onClick={toggleDropdown}
-              className="text-[var(--Pink)] font-bold text-xl inline-flex items-center hover:scale-105 transition-all cursor-pointer"
+              className="text-[var(--Pink)] font-bold text-xl inline-flex items-center hover:scale-105 transition-all duration-300 cursor-pointer"
               type="button"
+              aria-label="Menu"
+              aria-expanded={dropdownOpen}
             >
               <FontAwesomeIcon icon={faBars} />
             </button>
@@ -128,36 +173,56 @@ const Navbar = () => {
             {dropdownOpen && (
               <div
                 id="dropdown"
-                className="fixed z-20 divide-y divide-gray-100 rounded-md shadow bg-[var()]"
+                className="fixed z-20 divide-y divide-gray-100 rounded-md shadow-lg bg-[var(--Light)] border border-[var(--Pink)] animate-fadeIn"
               >
                 <ul className="py-2 text-sm">
                   <NavLink
                     to="/"
-                    className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
+                    className={({ isActive }) =>
+                      `block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 ${
+                        isActive ? "font-bold border-l-4 border-[var(--Pink)] border-b-[3px]" : ""
+                      }`
+                    }
                   >
                     <li>Home</li>
                   </NavLink>
                   <NavLink
                     to="/Collection"
-                    className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
+                    className={({ isActive }) =>
+                      `block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 ${
+                        isActive ? "font-bold border-l-4 border-[var(--Pink)] border-b-[3px]" : ""
+                      }`
+                    }
                   >
                     <li>Collection</li>
                   </NavLink>
                   <NavLink
                     to="/About"
-                    className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
+                    className={({ isActive }) =>
+                      `block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 ${
+                        isActive ? "font-bold border-l-4 border-[var(--Pink)] border-b-[3px]" : ""
+                      }`
+                    }
                   >
                     <li>About</li>
                   </NavLink>
                   <NavLink
                     to="/Training"
-                    className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
+                    className={({ isActive }) =>
+                      `block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 ${
+                        isActive ? "font-bold border-l-4 border-[var(--Pink)] border-b-[3px]" : ""
+                      }`
+                    }
                   >
                     <li>Trainers</li>
                   </NavLink>
                   <NavLink
                     to="/Contact"
-                    className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
+                    className={({ isActive }) =>
+                      `block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 ${
+                        isActive ? "font-bold border-l-4 border-[var(--Pink)] border-b-[3px]" : ""
+                      }`
+                    }
                   >
                     <li>Contact</li>
                   </NavLink>
@@ -169,13 +234,13 @@ const Navbar = () => {
             {downProfile && (
               <div
                 id="drop"
-                className="fixed z-20 divide-y divide-gray-100 rounded-md shadow bg-[var()]"
+                className="fixed z-20 divide-y divide-gray-100 rounded-md shadow-lg bg-[var(--Light)] border border-[var(--Pink)] animate-fadeIn"
               >
                 <ul className="py-2 text-sm">
                   {!token && (
                     <li
                       onClick={() => (token ? null : navigate("/Login"))}
-                      className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
+                      className="block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 cursor-pointer"
                     >
                       My Profile
                     </li>
@@ -184,13 +249,13 @@ const Navbar = () => {
                     <>
                       <li
                         onClick={() => navigate("/Order")}
-                        className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
+                        className="block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 cursor-pointer"
                       >
                         My Orders
                       </li>
                       <li
                         onClick={logout}
-                        className="block px-2 text-[var(--Brown)] py-2 hover:text--800"
+                        className="block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 cursor-pointer"
                       >
                         Log Out
                       </li>
@@ -206,7 +271,8 @@ const Navbar = () => {
             <div className="relative">
               <button
                 onClick={toggleProfile}
-                className="text-lg cursor-pointer pb-1.5 transition-all px-2 hover:font-bold"
+                className="text-lg cursor-pointer pb-1.5 transition-all duration-300 px-2 hover:font-bold hover:scale-105"
+                aria-label="User Profile"
               >
                 <i className="fas fa-user text-[var(--Muted)]"></i>
               </button>
@@ -214,13 +280,13 @@ const Navbar = () => {
               {downProfile && (
                 <div
                   id="drop"
-                  className="absolute top-full right-0 z-20 divide-y divide-gray-100 rounded-md shadow bg-[var(--Muted)] hover:bg-[var(--Primary)]"
+                  className="absolute top-full right-0 z-20 divide-y divide-gray-100 rounded-md shadow-lg bg-[var(--Light)] border border-[var(--Pink)] animate-fadeIn"
                 >
                   <ul className="py-2 text-sm">
                     {!token && (
                       <li
                         onClick={() => (token ? null : navigate("/Login"))}
-                        className="block px-2 text-[var(--Primary)] hover:text-[var(--Muted)] py-2 cursor-pointer"
+                        className="block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 cursor-pointer whitespace-nowrap"
                       >
                         My Profile
                       </li>
@@ -230,13 +296,13 @@ const Navbar = () => {
                       <>
                         <li
                           onClick={() => navigate("/Order")}
-                          className="block cursor-pointer px-2 text-[var(--Primary)] hover:text-[var(--Muted)] py-2 "
+                          className="block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 cursor-pointer whitespace-nowrap"
                         >
                           My Orders
                         </li>
                         <li
                           onClick={logout}
-                          className="block cursor-pointer px-2 text-[var(--Primary)] hover:text-[var(--Muted)] py-2 "
+                          className="block px-4 py-3 text-[var(--Pink)] hover:bg-[var(--LightBrown)] transition-all duration-300 cursor-pointer whitespace-nowrap"
                         >
                           Log Out
                         </li>
