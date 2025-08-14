@@ -39,10 +39,12 @@ const Cart = () => {
   };
 
   return (
-    <div className="p-5 bg-gray-300 grid lg:grid-cols-3 lg:gap-5 sm:grid-cols-1">
+    <div className="p-5 bg-[var(--Muted)] grid lg:grid-cols-3 lg:gap-5 sm:grid-cols-1">
       {/* Shopping Bag Section */}
       <div className="lg:col-span-2">
-        <h1 className="font-bold text-2xl">Shopping Bag</h1>
+        <h1 className="font-bold text-2xl text-[var(--Primary)]">
+          Shopping Bag
+        </h1>
         <div className="bg-white mt-10 p-10 rounded-md shadow-lg">
           <div className="grid grid-cols-2 sm:grid-cols-5 text-xl my-5 font-semibold gap-10">
             <p className="col-span-2 block">Product</p>

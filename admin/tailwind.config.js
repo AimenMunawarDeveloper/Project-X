@@ -4,11 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        light: "var(--Light)",
-        lightBrown: "var(--LightBrown)",
+        light: "var()",
+        lightBrown: "var(Brown)",
         brown: "var(--Brown)",
         pink: "var(--Pink)",
-        yellow: "var(--Yellow)",
+        : "var(--)",
         DarkBrown: "var(--DarkBrown)",
       },
     },

@@ -398,7 +398,6 @@ const Product = () => {
           <p className="py-2 text-gray-600 text-lg">
             SubCategory: {isData.subCategory}
           </p>
-
           <button
             className="py-2 mt-5 mb-5 px-4 border bg-[var(--Yellow)] rounded-3xl text-lg font-bold text-white hover:bg-yellow-700 cursor-pointer hover:scale-105 transition-all"
             onClick={() => addingAnItemToTheCart(ProductId)}
@@ -593,7 +592,6 @@ const Product = () => {
           )
         )}
       </div>
-
       <h1 className="font-bold text-3xl text-center text-[var(--Yellow)] py-10 mx-10">
         You May Also Like...
       </h1>
