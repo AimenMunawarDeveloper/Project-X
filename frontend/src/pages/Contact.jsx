@@ -94,7 +94,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full min-h-screen p-10 bg-[var(--Muted)]">
+    <div className="flex flex-col items-center justify-center w-full min-h-screen p-10">
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 w-full max-w-7xl">
         <div className="mb-10">
           <h1 className="text-3xl font-bold text-black mb-10">

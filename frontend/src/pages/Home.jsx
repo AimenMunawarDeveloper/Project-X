@@ -6,13 +6,10 @@ import NewsLetter from "../Components/NewsLetter";
 
 const Home = () => {
   return (
-    <div className="bg-[var(--Background)]">
+    <div>
       <Hero />
-      <div className="p-7">
-        <LatestCollection />
-        <BestSelling />
-      </div>
-
+      <LatestCollection />
+      <BestSelling />
       <NewsLetter />
     </div>
   );

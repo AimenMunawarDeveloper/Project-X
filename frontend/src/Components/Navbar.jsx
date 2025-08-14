@@ -32,11 +32,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-[var(--Primary)] text-[var(--Muted)]">
+    <div className="bg-[var(--Light)]">
       <div className="flex flex-wrap justify-center md:justify-between items-baseline py-5 px-5">
         <NavLink to="/">
           <h1 className="text-3xl font-bold text-black">
-            <span className="text-[var(--Muted)]">Project X</span>
+            <span className="text-[var(--Pink)]">Project X</span>
           </h1>
         </NavLink>
 
@@ -148,7 +148,7 @@ const Navbar = () => {
             )}
           </div>
 
-          <div className="lg:hidden text-[var(--Muted)]">
+          <div className="lg:hidden">
             <button
               onClick={toggleProfile}
               type="button"
@@ -274,7 +274,7 @@ const Navbar = () => {
                 className="text-lg cursor-pointer pb-1.5 transition-all duration-300 px-2 hover:font-bold hover:scale-105"
                 aria-label="User Profile"
               >
-                <i className="fas fa-user text-[var(--Muted)]"></i>
+                <i className="fas fa-user text-[var(--Yellow)]"></i>
               </button>
 
               {downProfile && (

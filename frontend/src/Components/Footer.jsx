@@ -16,7 +16,7 @@ const Footer = () => {
     });
   };
   return (
-    <div className="bg-[var(--Secondary)] text-[var(--Background)] py-10 sticky top-[100vh]">
+    <div className="bg-[var(--LightBrown)] py-10 sticky top-[100vh]">
       <div className="flex flex-col lg:flex-row justify-between gap-10 px-10 lg:px-20 py-20 w-full ">
         <div className="flex-grow text-center lg:text-left">
           <h1 className="text-3xl font-bold">
